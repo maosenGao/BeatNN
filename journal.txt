@@ -1,7 +1,10 @@
+09/25/2019
+-Request access to the CCN computing cluster used by McClelland's group
+
 09/24/2019
 -Start bibliography for literature review
 -Attend Jay McClelland's lab meeting
--Schedul milestone presentation to Jay's group in December
+-Schedule milestone presentation to Jay McClelland's group in December
 
 09/23/2019
 -Research hardware and software resources for project
