@@ -1,5 +1,6 @@
 09/26/2019
 -Read the second half of Stober 2017 and write its summary
+-Request data access from Emily Graber
 
 09/25/2019
 -Request access to the CCN computing cluster used by McClelland's group
