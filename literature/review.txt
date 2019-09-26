@@ -1,0 +1,15 @@
+Stober S. Toward studying music cognition with information retrieval techniques: Lessons learned from the OpenMIIR initiative. Frontiers in psychology. 2017 Aug 3;8:1255.
+-Significance: overview of the work on music imagery information retrieval (MIIR), carried out between 2015 and 2017, using the OpenMIIR dataset of eeg recordings (Stober et al. 2015). 
+-Gives a brief description of the OpenMIIR dataset.
+-Describes eeg studies that found rich musical features in eeg recordings when people listen and imagine musical stimuli.
+-Three experiments with the OpenMIIR dataset:
+	1. erp-inspired single trial analysis
+		goal: musical tempo estimation from eeg recordings when listening and imagining musical stimuli.
+		methodology: autocorrelation analysis using a sliding window over a single trial of eeg. The sliding autocorrelations get stacked to a matrix, and the location of the max value indicates the estimated tempo (Sternin et al. 2015).
+		results: encouraging indication that eeg signals contain musical tempo information.
+	2. audio envelope reconstruction
+		goal: reconstruct audio envelopes from eeg signals.
+		methodology: convolutional filter learning to convolve the eeg singal and produce the reconstructed stimulus envelope (O'Sullivan et al. 2015).
+		results: not satisfying. Model was overfit and did not generalize.
+	3. finding musical stimuli features in eeg
+		goal: identify musical features in the eeg signal that are directly related to the imagination or perception of music. 
