@@ -2,7 +2,7 @@
 -Read the second half of Stober 2017 and write its summary
 -Request data access from Emily Graber
 -Contact Sergey Stavinsky to learn more about their methods to decode brain activity from primates.
--Expand bibliography to include all current studies with the OpenMIIR dataset
+-Expand bibliography to include all recent studies with the OpenMIIR dataset
 -Join the CCN computing cluster as user
 
 09/25/2019
