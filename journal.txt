@@ -1,5 +1,9 @@
+09/27/2019
+-Install screen with homebrew for multiplexing
+-Read Stober 2015 and write summary
+
 09/26/2019
--Read the second half of Stober 2017 and write its summary
+-Read the second half of Stober 2017 and write summary
 -Request data access from Emily Graber
 -Contact Sergey Stavinsky to learn more about their methods to decode brain activity from primates.
 -Expand bibliography to include all recent studies with the OpenMIIR dataset
@@ -8,7 +12,7 @@
 09/25/2019
 -Request access to the CCN computing cluster used by McClelland's group
 -Start literature review
--Read the first half Stober 2017 and write its summary
+-Read the first half Stober 2017 and write summary
 
 09/24/2019
 -Start bibliography for literature review

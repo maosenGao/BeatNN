@@ -1,6 +1,8 @@
+Stober S, Sternin A, Owen AM, Grahn JA. Towards Music Imagery Information Retrieval: Introducing the OpenMIIR Dataset of EEG Recordings from Music Perception and Imagination. InISMIR 2015 (pp. 763-769).
+-Significance: first open dataset of eeg recordings during music listening and imagination
+
 Stober S. Toward studying music cognition with information retrieval techniques: Lessons learned from the OpenMIIR initiative. Frontiers in psychology. 2017 Aug 3;8:1255.
 -Significance: overview of the work on music imagery information retrieval (MIIR), carried out between 2015 and 2017, using the OpenMIIR dataset of eeg recordings (Stober et al. 2015). 
--Gives a brief description of the OpenMIIR dataset.
 -Describes eeg studies that found rich musical features in eeg recordings when people listen and imagine musical stimuli.
 -Three experiments with the OpenMIIR dataset:
 	1. erp-inspired single trial analysis
