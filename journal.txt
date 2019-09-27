@@ -1,26 +1,29 @@
 09/27/2019
--Install screen with homebrew for multiplexing
--Read Stober 2015 and write summary
+/Install screen with homebrew for multiplexing
+[]Read Stober 2015 and write summary
+/Sergey Stavinsky recommends looking at the work by Edward Chang (UCSF) and Mesgarani (Columbia)
+[]Write bash script to download the OpenMIIR dataset
 
 09/26/2019
--Read the second half of Stober 2017 and write summary
--Request data access from Emily Graber
--Contact Sergey Stavinsky to learn more about their methods to decode brain activity from primates.
--Expand bibliography to include all recent studies with the OpenMIIR dataset
--Join the CCN computing cluster as user
+/Read the second half of Stober 2017 and write summary
+/Request data access from Emily Graber
+/Contact Sergey Stavinsky to learn more about their methods to decode brain activity from primates
+/Expand bibliography to include all recent studies with the OpenMIIR dataset
+/Join the CCN slack channel
+/Request access to CNN computing from Dan Yamins 
 
 09/25/2019
--Request access to the CCN computing cluster used by McClelland's group
--Start literature review
--Read the first half Stober 2017 and write summary
+/Request access to the CCN computing cluster used by McClelland's group
+/Start literature review
+/Read the first half Stober 2017 and write summary
 
 09/24/2019
--Start bibliography for literature review
--Attend Jay McClelland's lab meeting
--Schedule milestone presentation to Jay McClelland's group in December
+/Start bibliography for literature review
+/Attend Jay McClelland's lab meeting
+/Schedule milestone presentation to Jay McClelland's group in December
 
 09/23/2019
--Research hardware and software resources for project
--Set up project github repo
+/Research hardware and software resources for project
+/Set up project github repo
 	github.com/iranroman/BeatNN
--Add README with project abstract
+/Add README with project abstract
