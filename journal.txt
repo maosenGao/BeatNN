@@ -1,8 +1,10 @@
+09/30/2019
+[]Read Stober 2015 and write summary
+
 09/27/2019
 /Install screen with homebrew for multiplexing
-[]Read Stober 2015 and write summary
 /Sergey Stavinsky recommends looking at the work by Edward Chang (UCSF) and Mesgarani (Columbia)
-[]Write bash script to download the OpenMIIR dataset
+/Write bash script to download the OpenMIIR dataset
 
 09/26/2019
 /Read the second half of Stober 2017 and write summary
