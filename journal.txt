@@ -1,5 +1,8 @@
 09/30/2019
-[]Read Stober 2015 and write summary
+/Read Stober 2015 and write summary
+/Experiment idea: train a network to identify the time index that corresponds to the onset of the beat in Stober's cued data on a trial-by-trial basis.  
+/Expand literature review to include relevant Chan and Mesgarani work
+/Write to Edward Chang to get in touch and explore synergies
 
 09/27/2019
 /Install screen with homebrew for multiplexing
