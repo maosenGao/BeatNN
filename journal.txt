@@ -1,3 +1,7 @@
+10/01/2019
+/Attend McClelland lab meeting
+/Get access granted to the CCN cluster from Dan Yamins
+
 09/30/2019
 /Read Stober 2015 and write summary
 /Experiment idea: train a network to identify the time index that corresponds to the onset of the beat in Stober's cued data on a trial-by-trial basis.  
