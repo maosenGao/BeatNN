@@ -1,6 +1,7 @@
 10/01/2019
 /Attend McClelland lab meeting
 /Get access granted to the CCN cluster from Dan Yamins
+/Start CNN experiments for beat identification from single-trial eeg data
 
 09/30/2019
 /Read Stober 2015 and write summary

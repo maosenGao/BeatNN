@@ -15,7 +15,7 @@ In this channel, a zero means no stimulus trigger present. Each stimulus type ha
 -The rightmost number indicates the condition
 -The other number(s) indicate the stimulus ID (12 different total)
 
-Additionally there are four-long codes. 
+Additionally there are four-long trigger codes. 
 '''
 print(raw.ch_names)
 print(np.unique(raw.get_data()[-1,:], return_counts=True))
