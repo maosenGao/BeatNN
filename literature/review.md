@@ -2,7 +2,7 @@
 
 ## Stober S, Sternin A, Owen AM, Grahn JA. Towards Music Imagery Information Retrieval: Introducing the OpenMIIR Dataset of EEG Recordings from Music Perception and Imagination. InISMIR 2015 (pp. 763-769).
 - Significance: first open dataset of eeg recordings during music listening and imagination. Meant to allow MIR researchers, who usually don't have brain recording devices, to access brain data.
-- Dataset metadata: 10 participants (4 excluded due to low melody familiarity scores). 
+- Dataset metadata: 10 participants (4 excluded due to low melody familiarity scores). The publicly available dataset is the raw eeg data with no pre-processing applied to it. 
 - Stimuli: 2 parts, 5 blocks per part, 12 melody stimuli in random order per block. The first part of the experiment consisted of cued (metronome clicks before the beginning of the melody) perception and imagination trials, and uncued imagination trials. The second part consisted of uncued imagined trials after which participants indicated whether they were able to imagine the simulus correctly. 240 trials recorded per subject. The first 4 melody stimuli had lyrics. The next 4 melody stimuli were the instrumental version of the simuli with lyrics. The last 4 melody stimuli were excerpts from instrumental pieces of music. All 12 melody stimuli had somewhat different beat speeds. 
 
 ## Stober S. Toward studying music cognition with information retrieval techniques: Lessons learned from the OpenMIIR initiative. Frontiers in psychology. 2017 Aug 3;8:1255.
