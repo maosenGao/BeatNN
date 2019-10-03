@@ -41,6 +41,8 @@ other trigger codes:
 ### get the data array and time array ###
 data, stim, time = raw.get_data()[:-1,:], raw.get_data()[-1,:], raw.times
 
+print(type(data[0,0]))
+
 ### find stim triggers for all C1 and C2 data ###
 triggers = (
 	11,  21,  31,  41,
@@ -64,17 +66,19 @@ epoch_size = fs*nsecs
 nchans = 68
 
 X = np.empty([0,nchans,epoch_size])# dataset
-for t in range(epoch_size):
+for t in range(3):#epoch_size):
 	idx = np.linspace((trig_is-t),(trig_is-t)+epoch_size,num=epoch_size,dtype=int).T
 	X = np.append(
 		X,
 		np.transpose(data[:,idx],(1,0,2)),
 		axis=0)
-	
-print(data.shape)
-print(X.shape)
 
+base_secs = 0.1 # baseline
+base_samp = np.floor(0.1*fs).astype(int)
+X = X - np.mean(X[:,:,:base_samp],axis=2,keepdims=True)
 
+plt.plot(X[0].T)
+plt.savefig('test.png')
 
 
 
