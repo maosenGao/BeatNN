@@ -1,6 +1,7 @@
 10/03/2019
 /Stablish pipeline for remote work
 /Continue writing CNN experiments for beat id from single-trial eeg data
+/Start writting data utilities to do preprocessing of raw data
 
 10/02/2019
 /Continue writing CNN experiments for beat id from single-trial eeg data
