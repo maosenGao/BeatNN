@@ -1,5 +1,6 @@
 10/02/2019
 /Continue writing CNN experiments for beat id from single-trial eeg data
+/Become familiar with the CCN cluster wiki after getting access from Dan
 
 10/01/2019
 /Attend McClelland lab meeting
