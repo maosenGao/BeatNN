@@ -1,5 +1,5 @@
 10/03/2019
-/stablish pipeline for remote work
+/Stablish pipeline for remote work
 /Continue writing CNN experiments for beat id from single-trial eeg data
 
 10/02/2019
