@@ -6,6 +6,18 @@ import utils.data_utils
 data_dir = '../datasets/OpenMIIR/data/'
 file_name = 'P01-raw.fif'  
 
+subj_ids = utils.data_utils.get_all_subject_ids()
+
+for i in range(len(subj_ids)):
+	
+	subj_id = subj_ids[i]
+	raw = utils.data_utils.load_raw(data_dir,subj_id)
+	
+	print(raw.ch_names)
+
+	utils.data_utils.get_data_stim_and_time_from_raw(raw)
+
+'''
 # load the data
 raw = mne.io.read_raw_fif(data_dir+file_name, preload=True)
 
@@ -73,3 +85,4 @@ np.save('tr_data/x_vl',x_vl)
 np.save('tr_data/y_vl',y_vl)
 np.save('ts_data/x_ts',x_ts)
 np.save('ts_data/y_ts',y_ts)
+'''
