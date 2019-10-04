@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import mne
+import utils.data_utils 
 
 data_dir = '../datasets/OpenMIIR/data/'
 file_name = 'P01-raw.fif'  
