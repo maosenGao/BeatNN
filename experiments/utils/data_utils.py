@@ -50,6 +50,16 @@ def stim_triggs_for_conds_of_interest(conds_of_interest):
 
 	return triggers
 		 
-#def find_stim_triggers():
+def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
+	
+	trig_is = np.empty([0,1], dtype=int)
+	for cond, trigs in cond_trig_dict.items():
+		for itrig in trigs:
+			trig_is = np.append(trig_is, np.where(stim_triggs==itrig))		
+	trig_is = np.sort(trig_is, axis=0)
+	return trig_is
+	
+def get_epochs(data, trig_is, epoch_size, nchans=70):
+
 
 

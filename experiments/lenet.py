@@ -19,7 +19,9 @@ for i in range(len(subj_ids)):
 	
 	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
 
-	utils.data_utils.get_epochs(data, stim_triggs, cond_trig_dict)
+	trig_is = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
+	print(trig_is.shape)
+
 
 '''
 fs = 512
