@@ -4,7 +4,11 @@ import mne
 import utils.data_utils 
 
 data_dir = '../datasets/OpenMIIR/data/'
-file_name = 'P01-raw.fif'  
+
+all_conds = utils.data_utils.get_all_conds()
+print(all_conds)
+conds_of_interest = all_conds[:2]
+cond_trig_dict = utils.data_utils.stim_triggs_for_conds_of_interest(conds_of_interest)
 
 subj_ids = utils.data_utils.get_all_subject_ids()
 
@@ -13,34 +17,11 @@ for i in range(len(subj_ids)):
 	subj_id = subj_ids[i]
 	raw = utils.data_utils.load_raw(data_dir,subj_id)
 	
-	print(raw.ch_names)
+	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
 
-	utils.data_utils.get_data_stim_and_time_from_raw(raw)
+	utils.data_utils.get_epochs(data, stim_triggs, cond_trig_dict)
 
 '''
-# load the data
-raw = mne.io.read_raw_fif(data_dir+file_name, preload=True)
-
-### get the data array and time array ###
-data, stim, time = raw.get_data()[:-1,:], raw.get_data()[-1,:], raw.times
-
-### find stim triggers for all C1 and C2 data ###
-triggers = (
-	11,  21,  31,  41,
-	111, 121, 131, 141,
-	211, 221, 231, 241,
-	12,  22,  32,  42,
-	112, 122, 132, 142,
-	212, 222, 232, 242
-	) 
-
-trig_is = np.empty([0,1], dtype=int)
-	
-for trig in triggers:
-	trig_is = np.append(trig_is, np.where(stim==trig))
-trig_is = np.sort(trig_is, axis=0)
-
-### extract relevant epochs ###
 fs = 512
 nsecs = 1
 epoch_size = fs*nsecs
