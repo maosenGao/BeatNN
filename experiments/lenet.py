@@ -6,9 +6,12 @@ import utils.data_utils
 data_dir = '../datasets/OpenMIIR/data/'
 
 all_conds = utils.data_utils.get_all_conds()
-print(all_conds)
 conds_of_interest = all_conds[:2]
 cond_trig_dict = utils.data_utils.stim_triggs_for_conds_of_interest(conds_of_interest)
+
+fs = 512
+nsecs = 2
+epoch_size = fs*nsecs
 
 subj_ids = utils.data_utils.get_all_subject_ids()
 
@@ -20,16 +23,12 @@ for i in range(len(subj_ids)):
 	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
 
 	trig_is = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
-	print(trig_is.shape)
 
+	epoched_data = utils.data_utils.get_epochs(data, trig_is, epoch_size)
 
+	print(epoched_data.shape)
+	
 '''
-fs = 512
-nsecs = 1
-epoch_size = fs*nsecs
-nchans = 68
-
-X = np.empty([0,nchans,epoch_size]) # dataset
 Y = np.empty([0,1]) #labels
 for t in range(epoch_size):
 	print('current t: ', t)

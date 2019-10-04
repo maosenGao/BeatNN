@@ -60,6 +60,7 @@ def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
 	return trig_is
 	
 def get_epochs(data, trig_is, epoch_size, nchans=70):
-
-
+	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
+	epoched_data =np.transpose( data[:,idx],(1,0,2))
+	return epoched_data
 
