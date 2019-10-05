@@ -64,3 +64,10 @@ def get_epochs(data, trig_is, epoch_size, nchans=70):
 	epoched_data =np.transpose( data[:,idx],(1,0,2))
 	return epoched_data
 
+def generate_labels_and_isubj_matrix(epoched_data, target, subj_id):
+	ndata_points = epoched_data.shape[0]
+	Y = np.concatenate((
+		np.ones((ndata_points,1))*target,
+		np.ones((ndata_points,1))*int(subj_id[-2:])),
+		axis=1)
+	return Y

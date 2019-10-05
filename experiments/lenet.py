@@ -8,12 +8,17 @@ data_dir = '../datasets/OpenMIIR/data/'
 all_conds = utils.data_utils.get_all_conds()
 conds_of_interest = all_conds[:2]
 cond_trig_dict = utils.data_utils.stim_triggs_for_conds_of_interest(conds_of_interest)
+neegchans = 70
+
 
 fs = 512
 nsecs = 2
 epoch_size = fs*nsecs
 
 subj_ids = utils.data_utils.get_all_subject_ids()
+
+X = np.empty((0,neegchans,epoch_size)) # initialize data matrix
+Y = np.empty((0,2)) # initialize label matrix
 
 for i in range(len(subj_ids)):
 	
@@ -26,22 +31,24 @@ for i in range(len(subj_ids)):
 
 	epoched_data = utils.data_utils.get_epochs(data, trig_is, epoch_size)
 
-	print(epoched_data.shape)
-	
-'''
-Y = np.empty([0,1]) #labels
-for t in range(epoch_size):
-	print('current t: ', t)
-	idx = np.linspace((trig_is-t),(trig_is-t)+epoch_size,num=epoch_size,dtype=int).T
-	X = np.append(
-		X,
-		np.transpose(data[:,idx],(1,0,2)),
-		axis=0)
-	Y = np.append(
-		Y,
-		np.ones((120,1),dtype=int)*t,
-		axis=0)
+	labels_and_isubj = utils.data_utils.generate_labels_and_isubj_matrix(epoched_data, epoch_size/2, subj_ids[i])
 
+	X = np.concatenate(
+		(X,
+		epoched_data),
+		axis = 0
+		)
+	
+	Y = np.concatenate(
+		(Y,
+		labels_and_isubj),
+		axis = 0
+		)
+
+np.save('tr_data/X',X)
+np.save('tr_data/Y',Y)
+
+'''
 base_secs = 0.1 # baseline period
 base_samp = np.floor(0.1*fs).astype(int)
 X = X - np.mean(X[:,:,:base_samp],axis=2,keepdims=True)
