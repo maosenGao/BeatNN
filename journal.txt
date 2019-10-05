@@ -1,5 +1,6 @@
 10/04/2019
 /Continue writting data utilities
+/Complete preliminary data processing pipeline
 
 10/03/2019
 /Stablish pipeline for remote work
