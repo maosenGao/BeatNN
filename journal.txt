@@ -1,3 +1,7 @@
+10/07/2019
+/Continue writting CNN experiments for beat if from single-trial eeg data
+
+
 10/04/2019
 /Continue writting data utilities
 /Complete preliminary data processing pipeline
