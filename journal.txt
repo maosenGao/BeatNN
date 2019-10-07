@@ -1,6 +1,10 @@
 10/07/2019
 /Continue writting CNN experiments for beat if from single-trial eeg data
-
+/Write to Sebastian Stober to clarify the following questions:
+	1. What do the trigger codes in 'STI 014' indicate? the onset of what?
+	2. In condition 1, how can I know the onset of clicks vs the onset of the stimulus?
+	3. In 'STI 014', what do the codes '1000', '1111', and '2001' indicate?
+	4. On the github repo there are two versions of the audio stimuli (i.e. cues.v1 vs cues.v2, and also full.v1 vs full.v2). What's different between them?
 
 10/04/2019
 /Continue writting data utilities

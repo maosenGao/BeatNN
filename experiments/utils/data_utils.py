@@ -53,21 +53,25 @@ def stim_triggs_for_conds_of_interest(conds_of_interest):
 def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
 	
 	trig_is = np.empty([0,1], dtype=int)
+	triggs = np.empty([0,1], dtype=int)
 	for cond, trigs in cond_trig_dict.items():
 		for itrig in trigs:
-			trig_is = np.append(trig_is, np.where(stim_triggs==itrig))		
-	trig_is = np.sort(trig_is, axis=0)
-	return trig_is
+			curr_trig_is = np.where(stim_triggs==itrig)[0]
+			print(curr_trig_is)
+			trig_is = np.append(trig_is, curr_trig_is)		
+			triggs = np.append(triggs, np.ones(curr_trig_is.shape)*itrig)		
+	return trig_is, triggs
 	
 def get_epochs(data, trig_is, epoch_size, nchans=70):
 	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
 	epoched_data =np.transpose( data[:,idx],(1,0,2))
 	return epoched_data
 
-def generate_labels_and_isubj_matrix(epoched_data, target, subj_id):
+def generate_labels_trig_id_and_isubj_matrix(epoched_data, target, subj_id, triggs):
 	ndata_points = epoched_data.shape[0]
-	Y = np.concatenate((
+	labels_matrix = np.concatenate((
 		np.ones((ndata_points,1))*target,
-		np.ones((ndata_points,1))*int(subj_id[-2:])),
+		np.ones((ndata_points,1))*int(subj_id[-2:]),
+		triggs[:,np.newaxis]),
 		axis=1)
-	return Y
+	return labels_matrix

@@ -12,15 +12,12 @@ cond_trig_dict = utils.data_utils.stim_triggs_for_conds_of_interest(conds_of_int
 nchans = 70
 subj_ids = utils.data_utils.get_all_subject_ids()
 
-# sampling metadata
+# sampling & epoch metadata
 fs = 512
 nsecs = 2
 epoch_size = fs*nsecs
 
-
-X = np.empty((0,nchans,epoch_size)) # initialize data matrix
-Y = np.empty((0,2)) # initialize label matrix
-
+# iterate over subjects
 for i in range(len(subj_ids)):
 	
 	subj_id = subj_ids[i]
@@ -28,11 +25,11 @@ for i in range(len(subj_ids)):
 	
 	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
 
-	trig_is = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
+	trig_is, triggs = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
 
 	epoched_data = utils.data_utils.get_epochs(data, trig_is, epoch_size)
 
-	labels_and_isubj = utils.data_utils.generate_labels_and_isubj_matrix(epoched_data, epoch_size/2, subj_ids[i])
+	labels_matrix = utils.data_utils.generate_labels_trig_id_and_isubj_matrix(epoched_data, epoch_size/2, subj_ids[i], triggs)
 
 	X = np.concatenate(
 		(X,
