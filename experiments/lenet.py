@@ -5,19 +5,20 @@ import utils.data_utils
 
 data_dir = '../datasets/OpenMIIR/data/'
 
+# load data
 all_conds = utils.data_utils.get_all_conds()
 conds_of_interest = all_conds[:2]
 cond_trig_dict = utils.data_utils.stim_triggs_for_conds_of_interest(conds_of_interest)
-neegchans = 70
+nchans = 70
+subj_ids = utils.data_utils.get_all_subject_ids()
 
-
+# sampling metadata
 fs = 512
 nsecs = 2
 epoch_size = fs*nsecs
 
-subj_ids = utils.data_utils.get_all_subject_ids()
 
-X = np.empty((0,neegchans,epoch_size)) # initialize data matrix
+X = np.empty((0,nchans,epoch_size)) # initialize data matrix
 Y = np.empty((0,2)) # initialize label matrix
 
 for i in range(len(subj_ids)):
