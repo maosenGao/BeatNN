@@ -1,3 +1,6 @@
+10/08/2019
+/Assess masking of OpenMIIR stimuli with cue files using audacity
+
 10/07/2019
 /Continue writting CNN experiments for beat if from single-trial eeg data
 /Write to Sebastian Stober to clarify the following questions:
