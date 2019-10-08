@@ -16,9 +16,11 @@ for wav_file in wav_full_filenames:
 	curr_stm, fs = librosa.load(wav_file,fs)
 	curr_cue, fs = librosa.load(cue_file,fs)
 
-	tempo, cue_beat_samps = librosa.beat.beat_track(curr_cue, fs, units='samples')
-	tempo, stm_beat_samps = librosa.beat.beat_track(curr_stm[len(curr_cue):], fs, units='samples')
-	print(np.diff(cue_beat_samps))
-	print(np.diff(stm_beat_samps))
-	#print(iwav, tempo, beat_times)
-	input()
+	tempo_c, cue_beat_samps = librosa.beat.beat_track(curr_cue, fs, units='samples')
+	tempo_s, stm_beat_samps = librosa.beat.beat_track(curr_stm[len(curr_cue):], fs, units='samples')
+
+	all_beats = np.concatenate((cue_beat_samps,
+			stm_beat_samps + len(curr_cue)))
+	
+	return all_beats
+	
