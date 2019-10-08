@@ -6,7 +6,8 @@
 	3. In 'STI 014', what do the codes '1000', '1111', and '2001' indicate?
 	4. On the github repo there are two versions of the audio stimuli (i.e. cues.v1 vs cues.v2, and also full.v1 vs full.v2). What's different between them?
 /Clone the github OpenMIIR repository
-/Use librosa to detect the onset of beats in the OpenMIIR stimuli
+/Use librosa to detect the onset of beats in the OpenMIIR stimuli and compare with audacity
+	Note: due to the loud cue clicks, librosa has a hardtime finding the beats in some of the audio files. Will need to mask the metronome cues to find ALL the beats. 
 
 10/04/2019
 /Continue writting data utilities
