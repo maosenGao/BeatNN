@@ -27,6 +27,8 @@ for i in range(len(subj_ids)):
 
 	trig_is, triggs = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
 
+	utils.data_utils.get_beat_time_indices(cond_trig_dict, trig_is, triggs)
+
 	epoched_data = utils.data_utils.get_epochs(data, trig_is, epoch_size)
 
 	labels_matrix = utils.data_utils.generate_labels_trig_id_and_isubj_matrix(epoched_data, epoch_size/2, subj_ids[i], triggs)

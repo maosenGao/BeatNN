@@ -1,3 +1,5 @@
+import librosa
+import glob
 import numpy as np
 import mne
 
@@ -57,11 +59,42 @@ def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
 	for cond, trigs in cond_trig_dict.items():
 		for itrig in trigs:
 			curr_trig_is = np.where(stim_triggs==itrig)[0]
-			print(curr_trig_is)
 			trig_is = np.append(trig_is, curr_trig_is)		
 			triggs = np.append(triggs, np.ones(curr_trig_is.shape)*itrig)		
 	return trig_is, triggs
+
+def get_beat_time_indices(cond_trig_dict, trig_is, triggs, wav_full_directory="/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/",fs=44100):
+	stim_ids = triggs//10
+
+	wav_full_filepaths = glob.glob(wav_full_directory+"*.wav")
+	wav_full_filenames = [filepath[len(wav_full_directory):] for filepath in wav_full_filepaths]
+	wav_full_stim_ids = [int(filename[1:3]) for filename in wav_full_filenames]	
+
+	stim_ids_beat_samps_dict = dict()
+
+	for iwav, wav_file in enumerate(wav_full_filepaths):
+		
+		cue_file = wav_file[:len(wav_full_directory)-8]+"cues"+wav_file[len(wav_full_directory)-4:-4]+"_cue."+wav_file[-3:]
+
+		curr_stm, fs = librosa.load(wav_file, fs)
+		curr_cue, fs = librosa.load(cue_file, fs)
+
+		tempo_c, cue_beat_samps = librosa.beat.beat_track(curr_cue, fs, units='samples')
+		tempo_s, stm_beat_samps = librosa.beat.beat_track(curr_stm[len(curr_cue):], fs, units = 'samples')
+
+		all_beats = np.concatenate((cue_beat_samps,
+			stm_beat_samps + len(curr_cue)))
+
+		stim_ids_beat_samps_dict[wav_full_stim_ids[iwav]] = all_beats	
+
+	print(stim_ids_beat_samps_dict)
+	#for trigg in triggs:
+			
+
+	return a
 	
+
+
 def get_epochs(data, trig_is, epoch_size, nchans=70):
 	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
 	epoched_data =np.transpose( data[:,idx],(1,0,2))
