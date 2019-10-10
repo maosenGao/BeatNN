@@ -26,6 +26,27 @@ def get_data_stim_and_time_from_raw(raw,tot_rec_chs=71):
 
 	return data, stim, time
 
+def generate_subj_stim_trig_audio_onset_dict(stim_triggs, cond_trig_dict, audio_onset_trigg = 1000):
+
+	all_unique_triggs = np.unique(stim_triggs)[1:]
+	print(all_unique_triggs)
+	print(np.argwhere(stim_triggs == 1000)[:10])
+	print([np.argwhere(stim_triggs == itrig)[:2] for itrig in all_unique_triggs[:-2]])
+	input()
+	all_audio_onsets = np.where(stim_triggs==audio_onset_trigg)[0]
+	stim_trigg_onsets_dict = {itrig : np.where(stim_triggs==itrig)[0] for icond, triggs in cond_trig_dict.items() for itrig in triggs}
+	running_sum = 0
+	for itrgg, onsets in stim_trigg_onsets_dict.items():
+		running_sum += len(onsets)
+	print(all_audio_onsets.shape)
+	print(np.where((stim_triggs>0) & (stim_triggs<1000))[0].shape)
+	print(running_sum)
+	all_stim_triggs = [int(itrigg) for itrigg in all_unique_triggs if (itrigg<1000 and itrigg>0)]
+
+	print(all_stim_triggs)
+
+	return onsets
+
 def get_all_stim_ids():
 	
 	all_stim_ids = (
@@ -87,7 +108,6 @@ def get_beat_time_indices(cond_trig_dict, trig_is, triggs, wav_full_directory="/
 
 		stim_ids_beat_samps_dict[wav_full_stim_ids[iwav]] = all_beats	
 
-	print(stim_ids_beat_samps_dict)
 	#for trigg in triggs:
 			
 

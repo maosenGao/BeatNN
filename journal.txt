@@ -1,3 +1,6 @@
+10/10/2019
+/Continue revising beat tracking functions and epoching script with Sebastian's feedback
+
 10/09/2019
 /Hear back from Sebastian Stober about the questions raised
 /Create documents directory to record email correspondance related to the project 
