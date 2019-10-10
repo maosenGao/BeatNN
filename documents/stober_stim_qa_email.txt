@@ -1,0 +1,71 @@
+On 9. Oct 2019, Sebastian Stober <stober@ovgu.de> wrote:
+
+Hello Iran,
+
+Thanks for your message and your interest in OpenMIIR!
+
+You can find python code for working with the events data here:
+https://github.com/sstober/openmiir-rl-2016/blob/master/openmiir/events.py
+and here:
+https://github.com/sstober/openmiir-rl-2016/blob/master/openmiir/preprocessing/events.py
+
+Essentially,
+   Event Ids < 1000 are trial labels
+       with the last digit indicating the condition
+               1 : 'perception',
+               2 : 'cued imag',
+               3 : 'imag fix cross',
+               4 : 'imagination',
+       and the remaining digits referring to the stimulus id.
+
+Furthermore,
+       1000: 'audio onset',
+           1111: 'noise',
+           2000: 'imagination failed', # feedback from participant in condition 3
+           2001: 'imagination okay'    # feedback from participant in condition 3
+
+
+Label 1000 marks the beginning of audio playback for each trial that involved audio. Those markers were inserted using the Stimtracker device. The other labels (< 1000) are the trial onsets generated from the Matlab script that ran the experiment. They encode the actual trial types and labels but they may not be as precise because of time lags introduced by the audio playback pipeline. It is recommended to use the position of the 1000 labels.
+
+There is a python function that allows merging the trial and audio onsets:
+https://github.com/sstober/deepthought/blob/master/deepthought/datasets/openmiir/preprocessing/events.py#L443
+This is the same function in the new code repository:
+https://github.com/sstober/openmiir-rl-2016/blob/master/openmiir/preprocessing/events.py#L442
+It basically allows to choose either the audio or the trial onset if there are both. 
+
+Note that label 1000 markers indicate the start of the cue. If you are not interested in the cue clicks and you would like to know the start of the actual audio stimulus, you have to add the length of the cue to the marker position.
+
+For Matlab users: It should be pretty straightforward to adapt this for Matlab. Or you run this in python and save the raw fif file with the modified event data. You could then import this fif into Matlab.
+
+The 1111 labels indicate the start of the short white noise in between the trials. This is just in case somebody is interested to analyze these short segments. Just ignore them if you are not interested.
+
+Finally, the 3rd value of the event data refers to the length of the events. We left the length 0 intentionally because we only wanted to mark the start times.
+
+To extract the relevant data:
+There is a convenience function to extract the trial epochs where you can specify whether or not to include the cue clicks.
+https://github.com/sstober/openmiir-rl-2016/blob/master/openmiir/epochs.py#L118
+
+Concerning the 2 versions: Unfortunately, the student who prepared the the stimuli had made some mistakes. For S22, the cue click did not have the right tempo (which is very tricky, because the piece does not have a constant beat) and for S01+S11 and S02+S12, the tempo was not matched exactly. We only noticed that when I had analysed the first batch of participants. Starting with subject 9, the corrected versions were used.
+
+I hope this clarifies things. If you have further questions, please let me know!
+
+Best regards,
+Sebastian
+
+
+On 7. Oct 2019, at 19:42, Iran Rafael Roman <iran@stanford.edu> wrote:
+
+Hello Sebastian,
+
+I am a PhD candidate and fellow at the Stanford Human-centered AI lab. 
+
+This academic year I'm working with your OpenMIIR dataset (thank you so much for making public this invaluable piece of work!), but I have a number of questions (sorry if the answers lie somewhere, but I have been looking for hints in your papers and documentation but cannot find them).
+   • What do the trigger codes in 'STI 014' indicate? the onset of what?
+   • In condition 1, how can I know the onset of clicks vs the onset of the stimulus?
+   • In 'STI 014', what do the codes '1000', '1111', and '2001' indicate?
+   • On the github repo there are two versions of the audio stimuli (i.e. cues.v1 vs cues.v2, and also full.v1 vs full.v2). What's different between them?
+Thanks a lot in advance for your help. Also, let me know if you have time to talk over the phone or the internet. I would greatly appreciate that. If you use an apple device, please feel free to send me an iMessage to iran@ccrma.stanford.edu
+
+Sincerely,
+Iran
+

@@ -1,3 +1,9 @@
+10/09/2019
+/Hear back from Sebastian Stober about the questions raised
+/Create documents directory to record email correspondance related to the project 
+/Follow up with Edward Chang
+/Revise beat tracking functions and epoching script with Sebastian's feedback
+
 10/08/2019
 /Assess masking of OpenMIIR stimuli with cue files using audacity
 /Use librosa to detect the onset of beats in the OpenMIIR stimuli and compare with audacity
