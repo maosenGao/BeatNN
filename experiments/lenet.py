@@ -14,16 +14,24 @@ subj_ids = utils.data_utils.get_all_subject_ids()
 
 # sampling & epoch metadata
 fs = 512
-nsecs = 2
-epoch_size = fs*nsecs
+nsecs = 0.3
+epoch_size = int(fs*nsecs)
 
 # iterate over subjects
 for i in range(len(subj_ids)):
 	
 	subj_id = subj_ids[i]
+
+	stm_list, cue_list = utils.data_utils.get_subj_stim_cue_lists(subj_id)
+	print(stm_list, cue_list)
+
 	raw = utils.data_utils.load_raw(data_dir,subj_id)
 	
 	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
+
+	# get audio onsets and corresponding stim trigg
+	# get beat time indicies for all stimuli
+	# get epochs and corresponding labels
 
 	trig_is, triggs = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
 
