@@ -71,21 +71,18 @@ def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
 			triggs = np.append(triggs, np.ones(curr_trig_is.shape)*itrig)		
 	return trig_is, triggs
 
-def get_beat_time_indices(cond_trig_dict, trig_is, triggs, wav_full_directory="/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/",fs=44100):
-	stim_ids = triggs//10
-
-	wav_full_filepaths = glob.glob(wav_full_directory+"*.wav")
-	wav_full_filenames = [filepath[len(wav_full_directory):] for filepath in wav_full_filepaths]
-	wav_full_stim_ids = [int(filename[1:3]) for filename in wav_full_filenames]	
-
-	stim_ids_beat_samps_dict = dict()
-
-	for iwav, wav_file in enumerate(wav_full_filepaths):
+def get_stim_beat_samps_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'):
+	
+	all_stim_ids = [int(file[len(stm_dir)+1:len(stm_dir)+3]) for file in stm_file_list]
+	
+	stim_beat_samps_dict = dict()
+	for istim, stim_id in enumerate(all_stim_ids):
 		
-		cue_file = wav_file[:len(wav_full_directory)-8]+"cues"+wav_file[len(wav_full_directory)-4:-4]+"_cue."+wav_file[-3:]
+		curr_stm_file = stm_file_list[istim] 
+		curr_cue_file = cue_file_list[istim]
 
-		curr_stm, fs = librosa.load(wav_file, fs)
-		curr_cue, fs = librosa.load(cue_file, fs)
+		curr_stm, fs = librosa.load(curr_stm_file, fs)
+		curr_cue, fs = librosa.load(curr_cue_file, fs)
 
 		tempo_c, cue_beat_samps = librosa.beat.beat_track(curr_cue, fs, units='samples')
 		tempo_s, stm_beat_samps = librosa.beat.beat_track(curr_stm[len(curr_cue):], fs, units = 'samples')
@@ -93,15 +90,10 @@ def get_beat_time_indices(cond_trig_dict, trig_is, triggs, wav_full_directory="/
 		all_beats = np.concatenate((cue_beat_samps,
 			stm_beat_samps + len(curr_cue)))
 
-		stim_ids_beat_samps_dict[wav_full_stim_ids[iwav]] = all_beats	
+		stim_beat_samps_dict[stim_id] = all_beats	
 
-	#for trigg in triggs:
-			
-
-	return a
+	return stim_beat_samps_dict
 	
-
-
 def get_epochs(data, trig_is, epoch_size, nchans=70):
 	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
 	epoched_data =np.transpose( data[:,idx],(1,0,2))
@@ -116,7 +108,7 @@ def generate_labels_trig_id_and_isubj_matrix(epoched_data, target, subj_id, trig
 		axis=1)
 	return labels_matrix
 
-def get_subj_stim_cue_lists(subj_id):
+def get_stim_cue_file_lists(subj_id):
 
 	subj_id = int(subj_id[1:])
 
@@ -125,7 +117,7 @@ def get_subj_stim_cue_lists(subj_id):
 	cue_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/cues.v2/'
 	cue_dir_v1 = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/cues.v1/'
 
-	stm_list = [
+	stm_file_list = [
 		stm_dir+'S01_Chim Chim Cheree_lyrics.wav',
 		stm_dir+'S02_Take Me Out To The Ballgame_lyrics.wav',
 		stm_dir+'S03_Jingle Bells_lyrics.wav',
@@ -140,7 +132,7 @@ def get_subj_stim_cue_lists(subj_id):
 		stm_dir+'S24_Eine kleine Nachtmusic.wav'
 		]	
 
-	cue_list = [
+	cue_file_list = [
 		cue_dir+'S01_Chim Chim Cheree_lyrics_cue.wav',
 		cue_dir+'S02_Take Me Out To The Ballgame_lyrics_cue.wav',
 		cue_dir+'S03_Jingle Bells_lyrics_cue.wav',
@@ -156,7 +148,7 @@ def get_subj_stim_cue_lists(subj_id):
 		]	
 
 	if subj_id < 9:
-		stm_list = [
+		stm_file_list = [
 			stm_dir_v1+'S01_Chim Chim Cheree_lyrics.wav',
 			stm_dir_v1+'S02_Take Me Out To The Ballgame_lyrics.wav',
 			stm_dir+'S03_Jingle Bells_lyrics.wav',
@@ -171,7 +163,7 @@ def get_subj_stim_cue_lists(subj_id):
 			stm_dir+'S24_Eine kleine Nachtmusic.wav'
 			]	
 
-		cue_list = [
+		cue_file_list = [
 			cue_dir_v1+'S01_Chim Chim Cheree_lyrics_cue.wav',
 			cue_dir_v1+'S02_Take Me Out To The Ballgame_lyrics_cue.wav',
 			cue_dir+'S03_Jingle Bells_lyrics_cue.wav',
@@ -186,4 +178,4 @@ def get_subj_stim_cue_lists(subj_id):
 			cue_dir+'S24_Eine kleine Nachtmusic_cue.wav'
 			]	
 
-	return stm_list, cue_list
+	return stm_file_list, cue_file_list

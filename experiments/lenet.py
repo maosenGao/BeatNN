@@ -22,7 +22,7 @@ for i in range(len(subj_ids)):
 	
 	subj_id = subj_ids[i]
 
-	stm_list, cue_list = utils.data_utils.get_subj_stim_cue_lists(subj_id)
+	stm_file_list, cue_file_list = utils.data_utils.get_stim_cue_file_lists(subj_id)
 
 	raw = utils.data_utils.load_raw(data_dir,subj_id)
 
@@ -30,8 +30,9 @@ for i in range(len(subj_ids)):
 
 	stim_audio_onsets_dict = utils.data_utils.get_stim_audio_onset_dict(stim_triggs, cond_trig_dict)
 
-	utils.data_utils.get_stim_beat_samps()	
-	# get beat time indicies for all stimuli
+ 	stim_beat_samps_dict = utils.data_utils.get_stim_beat_samps_dict(stm_file_list, cue_file_list)	
+
+	stim_beat_indicies_dict = utils.data_utils.get_stim_beat_indicies_dict(stim_audio_onsets_dict, stim_beat_samps_dict)
 	# get epochs and corresponding labels
 
 	trig_is, triggs = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
