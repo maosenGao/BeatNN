@@ -26,11 +26,11 @@ for i in range(len(subj_ids)):
 
 	raw = utils.data_utils.load_raw(data_dir,subj_id)
 
-	print(cond_trig_dict)
 	data, stim_triggs, time = utils.data_utils.get_data_stim_and_time_from_raw(raw)
 
-	utils.data_utils.generate_subj_stim_trig_audio_onset_dict(stim_triggs, cond_trig_dict)
-	# get audio onsets and corresponding stim trigg
+	stim_audio_onsets_dict = utils.data_utils.get_stim_audio_onset_dict(stim_triggs, cond_trig_dict)
+
+	utils.data_utils.get_stim_beat_samps()	
 	# get beat time indicies for all stimuli
 	# get epochs and corresponding labels
 
