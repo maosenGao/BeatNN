@@ -1,3 +1,48 @@
+On Oct 10, 2019,  Sebastian Stober <stober@ovgu.de> wrote:
+
+Hello Iran,
+
+Good question! Here is a typical distribution of events over time (for Subject P01):
+https://github.com/sstober/openmiir/blob/master/eeg/preprocessing/notebooks/Subject%20P01.ipynb
+(Scroll down to [7])
+It looks like the 1000-events also mark the start of the white noise between trials with audio. This makes sense are these triggers come from the stimtracker device which just reacts to audio.
+
+Cheers,
+Sebastian
+
+On 10. Oct 2019, at 21:08, Iran Rafael Roman <iran@stanford.edu> wrote:
+
+Hello Sebastian,
+
+Thank you so much for the clarification.
+
+One more question:
+
+Why are there 180 â1000â âaudio onsetâ triggers in each subject?  If only 2 conditions (2conds*5blocks*12stims = 120trials) have audio stimuli,  shouldnât there be 120 â1000â audio onset triggers? What am I missing?
+
+Thanks
+IrÃ¡n
+
+On Oct 9, 2019, at 11:39 PM, Sebastian Stober <stober@ovgu.de> wrote:
+
+ï»¿Hello Iran,
+
+Yes, exactly as you write.
+
+Cheers,
+Sebastian
+
+On 10. Oct 2019, at 03:34, Iran Rafael Roman <iran@stanford.edu> wrote:
+
+Hello Sebastian,
+
+Thank you very much for your response. This is very helpful.
+
+So, just to be super clear, for subjects <P09 I should use the versions in âfull.v1â and âcue.v1â for stimuli S01, S11, S02, S12, and S22, but all other stimuli are the same across all participants. Right?
+
+Cheers!
+IrÃ¡n
+
 On 9. Oct 2019, Sebastian Stober <stober@ovgu.de> wrote:
 
 Hello Iran,
