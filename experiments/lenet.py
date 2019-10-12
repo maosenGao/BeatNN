@@ -16,7 +16,10 @@ subj_ids = utils.data_utils.get_all_subject_ids()
 fs = 512
 nsecs = 0.3
 epoch_size = int(fs*nsecs)
+nlabels = 3
 
+X = np.empty([0,epoch_size,nchans])
+Y = np.empty([0,nlabels])
 # iterate over subjects
 for i in range(len(subj_ids)):
 	
@@ -32,31 +35,23 @@ for i in range(len(subj_ids)):
 
 	stim_beat_samps_dict = utils.data_utils.get_stim_beat_samps_dict(stm_file_list, cue_file_list)	
 
-	stim_beat_indicies_dict = utils.data_utils.get_stim_beat_indicies_dict(stim_audio_onsets_dict, stim_beat_samps_dict)
-	# get epochs and corresponding labels
-
-	trig_is, triggs = utils.data_utils.find_stim_trig_time_indices(stim_triggs, cond_trig_dict)
-
-	utils.data_utils.get_beat_time_indices(cond_trig_dict, trig_is, triggs)
-
-	epoched_data = utils.data_utils.get_epochs(data, trig_is, epoch_size)
-
-	labels_matrix = utils.data_utils.generate_labels_trig_id_and_isubj_matrix(epoched_data, epoch_size/2, subj_ids[i], triggs)
+	stim_beat_indices_dict = utils.data_utils.get_stim_beat_indices_dict(stim_audio_onsets_dict, stim_beat_samps_dict)
+	isubj_X, isubj_Y = utils.data_utils.get_epochs_and_labels(epoch_size, data, stim_beat_indices_dict, subj_id)
 
 	X = np.concatenate(
 		(X,
-		epoched_data),
+		isubj_X),
 		axis = 0
 		)
 	
 	Y = np.concatenate(
 		(Y,
-		labels_and_isubj),
+		isubj_Y),
 		axis = 0
 		)
 
-np.save('tr_data/X',X)
-np.save('tr_data/Y',Y)
+#np.save('tr_data/X',X)
+#np.save('tr_data/Y',Y)
 
 '''
 base_secs = 0.1 # baseline period

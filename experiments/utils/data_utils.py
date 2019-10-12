@@ -94,18 +94,53 @@ def get_stim_beat_samps_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '
 
 	return stim_beat_samps_dict
 
-def get_stim_beat_indicies_dict(stim_audio_onsets_dict, stim_beat_samps_dict):
+def get_stim_beat_indices_dict(stim_audio_onsets_dict, stim_beat_samps_dict):
 	
-	stim_beat_indicies_dict = dict()
+	stim_beat_indices_dict = dict()
 
 	for stim, onsets in stim_audio_onsets_dict.items():
 		beat_samps = stim_beat_samps_dict[stim//10]
-		stim_beat_indicies_dict[stim] = np.repeat(onsets[...,np.newaxis],len(beat_samps),axis=1) + beat_samps 
-		print(stim//10)
-		print(stim_beat_indicies_dict[stim].shape)
-		print(np.diff(beat_samps)/44100)
-		input()
-	return a	
+		stim_beat_indices_dict[stim] = np.repeat(onsets[...,np.newaxis],len(beat_samps),axis=1) + beat_samps 
+	return stim_beat_indices_dict	
+
+def get_stim_meter_dict():
+	# meters are either binary or ternary
+	stim_meter_dict = {
+			1:3,
+			2:3,
+			3:2,
+			4:2,
+			11:3,
+			12:3,
+			13:2,
+			14:2,
+			21:3,
+			22:3,
+			23:2,
+			24:2
+			}	
+	return stim_meter_dict
+
+def get_epochs_and_labels(epoch_size, data, stim_beat_indices_dict, subj_id, nchans = 70, nlabels = 3):
+
+	stim_meter_dict = get_stim_meter_dict()
+	isubj_X = np.empty([0, epoch_size, nchans])
+	isubj_Y = np.empty([0, nlabels])
+	for stim, beat_indices in stim_beat_indices_dict.items():
+		for itrial in range(beat_indices.shape[0]):
+			beat_is = beat_indices[itrial]
+			idx = np.linspace((beat_is-(epoch_size/2)),beat_is+(epoch_size/2),num=epoch_size,dtype=int)
+			epoched_data = np.transpose(data[:,idx],(2,1,0))
+			labels = np.asarray([stim,stim_meter_dict[stim//10],int(subj_id[1:])])
+			isubj_X = np.concatenate(
+				(isubj_X,
+				epoched_data), 
+				axis=0)
+			isubj_Y = np.concatenate(
+				(isubj_Y,
+				np.repeat(labels[np.newaxis,...],epoched_data.shape[0],axis=0)),
+				axis=0)
+	return isubj_X, isubj_Y
 
 def get_epochs(data, trig_is, epoch_size, nchans=70):
 	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
