@@ -18,7 +18,7 @@ Thank you so much for the clarification.
 
 One more question:
 
-Why are there 180 â1000â âaudio onsetâ triggers in each subject?  If only 2 conditions (2conds*5blocks*12stims = 120trials) have audio stimuli,  shouldnât there be 120 â1000â audio onset triggers? What am I missing?
+Why are there 180 '100' 'audio onset' triggers in each subject?  If only 2 conditions (2conds*5blocks*12stims = 120trials) have audio stimuli,  shouldn't there be 120 '1000' audio onset triggers? What am I missing?
 
 Thanks
 IrÃ¡n
@@ -38,7 +38,7 @@ Hello Sebastian,
 
 Thank you very much for your response. This is very helpful.
 
-So, just to be super clear, for subjects <P09 I should use the versions in âfull.v1â and âcue.v1â for stimuli S01, S11, S02, S12, and S22, but all other stimuli are the same across all participants. Right?
+So, just to be super clear, for subjects < P09 I should use the versions in 'full.v1' and 'cue.v1' for stimuli S01, S11, S02, S12, and S22, but all other stimuli are the same across all participants. Right?
 
 Cheers!
 IrÃ¡n
