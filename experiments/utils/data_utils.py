@@ -93,7 +93,20 @@ def get_stim_beat_samps_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '
 		stim_beat_samps_dict[stim_id] = all_beats	
 
 	return stim_beat_samps_dict
+
+def get_stim_beat_indicies_dict(stim_audio_onsets_dict, stim_beat_samps_dict):
 	
+	stim_beat_indicies_dict = dict()
+
+	for stim, onsets in stim_audio_onsets_dict.items():
+		beat_samps = stim_beat_samps_dict[stim//10]
+		stim_beat_indicies_dict[stim] = np.repeat(onsets[...,np.newaxis],len(beat_samps),axis=1) + beat_samps 
+		print(stim//10)
+		print(stim_beat_indicies_dict[stim].shape)
+		print(np.diff(beat_samps)/44100)
+		input()
+	return a	
+
 def get_epochs(data, trig_is, epoch_size, nchans=70):
 	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
 	epoched_data =np.transpose( data[:,idx],(1,0,2))
@@ -122,10 +135,10 @@ def get_stim_cue_file_lists(subj_id):
 		stm_dir+'S02_Take Me Out To The Ballgame_lyrics.wav',
 		stm_dir+'S03_Jingle Bells_lyrics.wav',
 		stm_dir+'S04_Mary Had A Little Lamb_lyrics.wav',
-		stm_dir+'S11_Chim Chim Cheree_no_lyrics.wav',
-		stm_dir+'S12_Take Me Out To The Ballgame_no_lyrics.wav',
-		stm_dir+'S13_Jingle Bells_no_lyrics.wav',
-		stm_dir+'S14_Mary Had A Little Lamb_no_lyrics.wav',
+		stm_dir+'S11_Chim Chim Cheree_no lyrics.wav',
+		stm_dir+'S12_Take Me Out To The Ballgame_no lyrics.wav',
+		stm_dir+'S13_Jingle Bells_no lyrics.wav',
+		stm_dir+'S14_Mary Had A Little Lamb_no lyrics.wav',
 		stm_dir+'S21_EmperorWaltz.wav',
 		stm_dir+'S22_Harry Potter Theme.wav',
 		stm_dir+'S23_Star Wars Theme.wav',
@@ -137,10 +150,10 @@ def get_stim_cue_file_lists(subj_id):
 		cue_dir+'S02_Take Me Out To The Ballgame_lyrics_cue.wav',
 		cue_dir+'S03_Jingle Bells_lyrics_cue.wav',
 		cue_dir+'S04_Mary Had A Little Lamb_lyrics_cue.wav',
-		cue_dir+'S11_Chim Chim Cheree_no_lyrics_cue.wav',
-		cue_dir+'S12_Take Me Out To The Ballgame_no_lyrics_cue.wav',
-		cue_dir+'S13_Jingle Bells_no_lyrics_cue.wav',
-		cue_dir+'S14_Mary Had A Little Lamb_no_lyrics_cue.wav',
+		cue_dir+'S11_Chim Chim Cheree_no lyrics_cue.wav',
+		cue_dir+'S12_Take Me Out To The Ballgame_no lyrics_cue.wav',
+		cue_dir+'S13_Jingle Bells_no lyrics_cue.wav',
+		cue_dir+'S14_Mary Had A Little Lamb_no lyrics_cue.wav',
 		cue_dir+'S21_EmperorWaltz_cue.wav',
 		cue_dir+'S22_Harry Potter Theme_cue.wav',
 		cue_dir+'S23_Star Wars Theme_cue.wav',
@@ -153,10 +166,10 @@ def get_stim_cue_file_lists(subj_id):
 			stm_dir_v1+'S02_Take Me Out To The Ballgame_lyrics.wav',
 			stm_dir+'S03_Jingle Bells_lyrics.wav',
 			stm_dir+'S04_Mary Had A Little Lamb_lyrics.wav',
-			stm_dir_v1+'S11_Chim Chim Cheree_no_lyrics.wav',
-			stm_dir_v1+'S12_Take Me Out To The Ballgame_no_lyrics.wav',
-			stm_dir+'S13_Jingle Bells_no_lyrics.wav',
-			stm_dir+'S14_Mary Had A Little Lamb_no_lyrics.wav',
+			stm_dir_v1+'S11_Chim Chim Cheree_no lyrics.wav',
+			stm_dir_v1+'S12_Take Me Out To The Ballgame_no lyrics.wav',
+			stm_dir+'S13_Jingle Bells_no lyrics.wav',
+			stm_dir+'S14_Mary Had A Little Lamb_no lyrics.wav',
 			stm_dir+'S21_EmperorWaltz.wav',
 			stm_dir_v1+'S22_Harry Potter Theme.wav',
 			stm_dir+'S23_Star Wars Theme.wav',
@@ -168,10 +181,10 @@ def get_stim_cue_file_lists(subj_id):
 			cue_dir_v1+'S02_Take Me Out To The Ballgame_lyrics_cue.wav',
 			cue_dir+'S03_Jingle Bells_lyrics_cue.wav',
 			cue_dir+'S04_Mary Had A Little Lamb_lyrics_cue.wav',
-			cue_dir_v1+'S11_Chim Chim Cheree_no_lyrics_cue.wav',
-			cue_dir_v1+'S12_Take Me Out To The Ballgame_no_lyrics_cue.wav',
-			cue_dir+'S13_Jingle Bells_no_lyrics_cue.wav',
-			cue_dir+'S14_Mary Had A Little Lamb_no_lyrics_cue.wav',
+			cue_dir_v1+'S11_Chim Chim Cheree_no lyrics_cue.wav',
+			cue_dir_v1+'S12_Take Me Out To The Ballgame_no lyrics_cue.wav',
+			cue_dir+'S13_Jingle Bells_no lyrics_cue.wav',
+			cue_dir+'S14_Mary Had A Little Lamb_no lyrics_cue.wav',
 			cue_dir+'S21_EmperorWaltz_cue.wav',
 			cue_dir_v1+'S22_Harry Potter Theme_cue.wav',
 			cue_dir+'S23_Star Wars Theme_cue.wav',

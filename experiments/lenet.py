@@ -30,7 +30,7 @@ for i in range(len(subj_ids)):
 
 	stim_audio_onsets_dict = utils.data_utils.get_stim_audio_onset_dict(stim_triggs, cond_trig_dict)
 
- 	stim_beat_samps_dict = utils.data_utils.get_stim_beat_samps_dict(stm_file_list, cue_file_list)	
+	stim_beat_samps_dict = utils.data_utils.get_stim_beat_samps_dict(stm_file_list, cue_file_list)	
 
 	stim_beat_indicies_dict = utils.data_utils.get_stim_beat_indicies_dict(stim_audio_onsets_dict, stim_beat_samps_dict)
 	# get epochs and corresponding labels
