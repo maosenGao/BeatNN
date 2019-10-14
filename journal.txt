@@ -1,5 +1,6 @@
 10/14/2019
-/Finish epoching script
+/Finish epoching script with cross validation data split
+/Link repo with tensorflow's official models repo
 
 10/11/2019
 /Continue revising beat tracking functions and epoching script with Sebastian's feedback

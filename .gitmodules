@@ -1,3 +1,6 @@
 [submodule "datasets/OpenMIIR/openmiir"]
 	path = datasets/OpenMIIR/openmiir
 	url = https://github.com/sstober/openmiir
+[submodule "models/tensorflow_models"]
+	path = models/tensorflow_models
+	url = https://github.com/tensorflow/models.git

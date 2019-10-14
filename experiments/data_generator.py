@@ -12,7 +12,7 @@ fs = 512 # sampling rate
 nlabels = 3 # number of labels
 
 # epoching variables 
-nsecs = 0.3
+nsecs = 0.6
 epoch_size = int(fs*nsecs) # in samples
 
 # define conditions of interest  
@@ -54,8 +54,11 @@ for i in range(len(subj_ids)):
 		axis = 0
 		)
 
-	print(all_subj_beat_epochs_C1_C2.shape)
-	print(all_subj_beat_labels_C1_C2.shape)
+x_tr,y_tr,x_vl,y_vl,x_ts,y_ts = utils.data_utils.split_data_for_cross_validation(all_subj_beat_epochs_C1_C2, all_subj_beat_labels_C1_C2)
 
-#np.save('tr_data/X',X)
-#np.save('tr_data/Y',Y)
+np.save('tr_data/x_tr',x_tr)
+np.save('tr_data/y_tr',y_tr)
+np.save('tr_data/x_vl',x_vl)
+np.save('tr_data/y_vl',y_vl)
+np.save('ts_data/x_ts',x_ts)
+np.save('ts_data/y_ts',y_ts)
