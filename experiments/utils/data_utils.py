@@ -11,29 +11,6 @@ def get_all_conds():
 	all_conds = ('C1', 'C2', 'C3', 'C4')
 	return all_conds
 
-def load_raw(data_dir,subj_id):		
-	raw = mne.io.read_raw_fif(data_dir+subj_id+'-raw.fif', preload=True)
-	return raw
-
-def get_data_stim_and_time_from_raw(raw,tot_rec_chs=71):
-	data = raw.get_data()[:-1,:]
-	stim = raw.get_data()[-1,:]
-	time = raw.times
-
-	if len(raw.ch_names) < tot_rec_chs:
-		blank_chs = np.zeros((2,data.shape[1]))
-		data = np.concatenate((data,blank_chs))
-
-	return data, stim, time
-
-def get_stim_audio_onset_dict(stim_triggs, cond_trig_dict, audio_onset_trigg = 1000):
-
-	all_unique_triggs = np.unique(stim_triggs)[1:]
-	all_audio_onsets = np.where(stim_triggs==audio_onset_trigg)[0]
-	stim_trigg_onsets_dict = {itrig : np.where(stim_triggs==itrig)[0] for icond, triggs in cond_trig_dict.items() for itrig in triggs}
-	stim_audio_onsets_dict = {itrig : all_audio_onsets[np.abs(np.repeat(all_audio_onsets[...,np.newaxis],len(onsets),axis=1) - onsets).argmin(axis=0)] for itrig, onsets in stim_trigg_onsets_dict.items()}
-	return stim_audio_onsets_dict
-
 def get_all_stim_ids():
 	
 	all_stim_ids = (
@@ -54,28 +31,39 @@ def get_all_triggers(tot_conds = 4):
 	
 	return all_triggers
 
-def stim_triggs_for_conds_of_interest(conds_of_interest):
+def get_cond_stim_trig_dict(conds_of_interest):
 	all_triggers = get_all_triggers()
 	triggers = {icond:all_triggers[icond] for icond in conds_of_interest}
 
 	return triggers
 		 
-def find_stim_trig_time_indices(stim_triggs,cond_trig_dict):
-	
-	trig_is = np.empty([0,1], dtype=int)
-	triggs = np.empty([0,1], dtype=int)
-	for cond, trigs in cond_trig_dict.items():
-		for itrig in trigs:
-			curr_trig_is = np.where(stim_triggs==itrig)[0]
-			trig_is = np.append(trig_is, curr_trig_is)		
-			triggs = np.append(triggs, np.ones(curr_trig_is.shape)*itrig)		
-	return trig_is, triggs
+def load_raw(data_dir,subj_id):		
+	raw = mne.io.read_raw_fif(data_dir+subj_id+'-raw.fif', preload=True)
+	return raw
 
-def get_stim_beat_samps_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'):
+def get_data_trig_and_time_sequences_from_raw(raw,tot_rec_chs=71):
+	data = raw.get_data()[:-1,:]
+	triggs_sequence = raw.get_data()[-1,:]
+	time = raw.times
+
+	if len(raw.ch_names) < tot_rec_chs:
+		blank_chs = np.zeros((2,data.shape[1]))
+		data = np.concatenate((data,blank_chs))
+
+	return data, triggs_sequence, time
+
+def get_trig_audio_eegonsets_dict(triggs_sequence, cond_trig_dict, audio_onset_trigg = 1000):
+
+	all_audio_onsets = np.where(triggs_sequence==audio_onset_trigg)[0]
+	triggs_eegonsets_dict = {itrig : np.where(triggs_sequence==itrig)[0] for icond, triggs in cond_trig_dict.items() for itrig in triggs}
+	triggs_audio_eegonsets_dict = {itrig : all_audio_onsets[np.abs(np.repeat(all_audio_onsets[...,np.newaxis],len(onsets),axis=1) - onsets).argmin(axis=0)] for itrig, onsets in triggs_eegonsets_dict.items()}
+	return triggs_audio_eegonsets_dict
+
+def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'):
 	
 	all_stim_ids = [int(file[len(stm_dir)+1:len(stm_dir)+3]) for file in stm_file_list]
 	
-	stim_beat_samps_dict = dict()
+	stim_id_beat_audiosamps_dict = dict()
 	for istim, stim_id in enumerate(all_stim_ids):
 		
 		curr_stm_file = stm_file_list[istim] 
@@ -90,18 +78,19 @@ def get_stim_beat_samps_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '
 		all_beats = np.concatenate((cue_beat_samps,
 			stm_beat_samps + len(curr_cue)))
 
-		stim_beat_samps_dict[stim_id] = all_beats	
+		stim_id_beat_audiosamps_dict[stim_id] = all_beats	
 
-	return stim_beat_samps_dict
+	return stim_id_beat_audiosamps_dict
 
-def get_stim_beat_indices_dict(stim_audio_onsets_dict, stim_beat_samps_dict):
+def get_trig_beat_eegsamples_dict(trig_audio_onsets_dict, stim_id_beat_audiosamps_dict, audio_fs=44100, eeg_fs=512):
 	
-	stim_beat_indices_dict = dict()
+	trig_beat_eegsamps_dict = dict()
 
-	for stim, onsets in stim_audio_onsets_dict.items():
-		beat_samps = stim_beat_samps_dict[stim//10]
-		stim_beat_indices_dict[stim] = np.repeat(onsets[...,np.newaxis],len(beat_samps),axis=1) + beat_samps 
-	return stim_beat_indices_dict	
+	for trig, onsets in trig_audio_onsets_dict.items():
+		beat_audiosamps = stim_id_beat_audiosamps_dict[trig//10]
+		beat_eegsamps = eeg_fs*beat_audiosamps//audio_fs
+		trig_beat_eegsamps_dict[trig] = np.repeat(onsets[...,np.newaxis],len(beat_eegsamps),axis=1) + beat_eegsamps 
+	return trig_beat_eegsamps_dict	
 
 def get_stim_meter_dict():
 	# meters are either binary or ternary
@@ -121,17 +110,17 @@ def get_stim_meter_dict():
 			}	
 	return stim_meter_dict
 
-def get_epochs_and_labels(epoch_size, data, stim_beat_indices_dict, subj_id, nchans = 70, nlabels = 3):
+def get_epochs_and_labels(epoch_size, data, trig_beat_eegsamps_dict, subj_id, nchans = 70, nlabels = 3):
 
 	stim_meter_dict = get_stim_meter_dict()
 	isubj_X = np.empty([0, epoch_size, nchans])
 	isubj_Y = np.empty([0, nlabels])
-	for stim, beat_indices in stim_beat_indices_dict.items():
+	for trig, beat_indices in trig_beat_eegsamps_dict.items():
 		for itrial in range(beat_indices.shape[0]):
 			beat_is = beat_indices[itrial]
 			idx = np.linspace((beat_is-(epoch_size/2)),beat_is+(epoch_size/2),num=epoch_size,dtype=int)
 			epoched_data = np.transpose(data[:,idx],(2,1,0))
-			labels = np.asarray([stim,stim_meter_dict[stim//10],int(subj_id[1:])])
+			labels = np.asarray([trig,stim_meter_dict[trig//10],int(subj_id[1:])])
 			isubj_X = np.concatenate(
 				(isubj_X,
 				epoched_data), 
@@ -141,20 +130,6 @@ def get_epochs_and_labels(epoch_size, data, stim_beat_indices_dict, subj_id, nch
 				np.repeat(labels[np.newaxis,...],epoched_data.shape[0],axis=0)),
 				axis=0)
 	return isubj_X, isubj_Y
-
-def get_epochs(data, trig_is, epoch_size, nchans=70):
-	idx = np.linspace((trig_is-(epoch_size/2)),(trig_is+(epoch_size/2)),num=epoch_size,dtype=int).T
-	epoched_data =np.transpose( data[:,idx],(1,0,2))
-	return epoched_data
-
-def generate_labels_trig_id_and_isubj_matrix(epoched_data, target, subj_id, triggs):
-	ndata_points = epoched_data.shape[0]
-	labels_matrix = np.concatenate((
-		np.ones((ndata_points,1))*target,
-		np.ones((ndata_points,1))*int(subj_id[-2:]),
-		triggs[:,np.newaxis]),
-		axis=1)
-	return labels_matrix
 
 def get_stim_cue_file_lists(subj_id):
 

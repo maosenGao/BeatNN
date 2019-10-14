@@ -1,3 +1,6 @@
+10/14/2019
+/Finish epoching script
+
 10/11/2019
 /Continue revising beat tracking functions and epoching script with Sebastian's feedback
 /Update correspondance with Sebastian Stober
