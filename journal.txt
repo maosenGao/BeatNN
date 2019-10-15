@@ -1,6 +1,9 @@
 10/14/2019
 /Finish epoching script with cross validation data split
-/Link repo with tensorflow's official models repo
+/Link repo with tensorflow's  models repo
+/Install tensorflow
+/Train the official mnist model as defined in the tensorflow official models repo 
+
 
 10/11/2019
 /Continue revising beat tracking functions and epoching script with Sebastian's feedback
