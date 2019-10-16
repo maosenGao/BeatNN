@@ -1,3 +1,6 @@
+10/15/2019 - 10/17/2019
+/Attend the timing research forum 2 (Queretaro, Mexico)
+
 10/14/2019
 /Finish epoching script with cross validation data split
 /Link repo with tensorflow's  models repo
