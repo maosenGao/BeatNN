@@ -1,5 +1,5 @@
 10/22/2019
-/Train mnist model with OpenMIIR data
+/Study tf.data.Dataset to pass OpenMIIR dataset to tensorflow's official MNIST model
 
 10/15/2019 - 10/18/2019
 /Attend the timing research forum 2 (Queretaro, Mexico)
