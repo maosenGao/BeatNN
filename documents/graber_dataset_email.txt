@@ -1,0 +1,47 @@
+On Oct 23, 2019, Iran Rafel Roman <iran@stanford.edu> wrote:
+
+Hello,
+
+Thanks a lot for this info. This is all I need for now. I wanted to gain access to the raw data. Iâll let you know how things go along.
+
+Cheers!
+IrÃ¡n
+
+On Oct 23, 2019, at 9:59 AM, Emily Graber <emgraber@ccrma.stanford.edu> wrote:
+
+ï»¿or did you just want the beta band epochs?
+
+On Wed, Oct 23, 2019 at 12:49 PM Emily Graber <emgraber@ccrma.stanford.edu<mailto:emgraber@ccrma.stanford.edu>> wrote:
+More trigger info -
+accel cues for standard trials were given by 117, 127, 137.
+
+The first cue in the sequence marks the onset of the first beat in a group of 3 beats. So 115 should be 600ms*3beats before trig 111. 111 is also 600ms*3beats long, same with 122, 121, 133, 132, 131 etc. Only trigs 110,120,130 contain the tempo change with more beats.
+
+Somewhere in the scripts I actually add triggers at every beat during anticipation and during the changing phases. If you want me to find that, let me know.
+
+
+On Wed, Oct 23, 2019 at 12:42 PM Emily Graber <emgraber@ccrma.stanford.edu<mailto:emgraber@ccrma.stanford.edu>> wrote:
+Hey,
+Sorry everything is so busy as usual. I have all the raw data on cmn25 > /scratch/emily/ANT/
+
+Do you want to see if you can access it? It looks like all the subject data have these permissions: drwxr-xr-x.
+
+I also have a ton of scripts. It maybe easier to recreate what you need yourself, but you can take a look. The cleanest versions of the analysis are in step## _*.m files here:
+/user/e/emgraber/Documents/bartok/Takako/DecodingAnticipation/Ex4/scripts_using_ANT_data/Trang/
+
+step0_MASTER_TN.m might be the most help with a list of subjects that I used, and the date recorded, etc. I recall that SMnew had many false alarms in behavioral data, so I never used the EEG. Also KW was all alpha - no erp, and I can't remember why I didn't use NF.... anyway, you can decide. For IR, I had to remove a few extra triggers because a block got restarted and I wanted to work with matrices, not cell arrays. It was only like 3 triggers.
+
+Trigger info....see the attachment. 100s were for accel, 200s for decel, others for steady cond (was supposed to be 300s, but I didn't realize that I had an 8-bit limit). 10% of trials were deviants, and the actual deviant beat was in the changing phase of the sequence, but the triggers kind of mark it twice. Once at the cue (eg 117 vs 119) and once at the changing phase onset (eg 110 vs 11).
+[image.png]
+
+Do you need the behavioral data? Hopefully the stimuli are still on the stim computer if you need. There might be a few versions....but I can't remember any details without seeing the file system.
+
+On Thu, Sep 26, 2019 at 7:11 PM Iran Rafael Roman <iran@stanford.edu<mailto:iran@stanford.edu>> wrote:
+Hello Emily,
+
+how is it going?
+
+I'm back at Stanford and working on that brain decoding project I mentioned (since that's how my 6th year is being funded). Could you let me know how to get access to your PhD data in order to experiment with it. We can also talk about publishing it as an open-access dataset.
+
+Cheers!
+Iran
