@@ -131,21 +131,24 @@ def get_epochs_and_labels(epoch_size, data, trig_beat_eegsamps_dict, subj_id, nc
 				axis=0)
 	return isubj_X, isubj_Y
 
-def split_data_for_cross_validation(X,Y,perc_test=0.05,perc_val=0.1):
+def baseline_correction(X, baseline_period = 0.01, fs = 512):
+
+	X = X - np.mean(X[:,:int(fs*baseline_period),:],axis=1,keepdims=True)
+
+	return X
+
+def split_data_for_cross_validation(X,Y,perc_test=0.05):
 
 	rand_is = np.random.choice(X.shape[0],X.shape[0],replace=False)
-	rand_tr_is = rand_is[:int((1-perc_test-perc_val)*X.shape[0])]
-	rand_vl_is = rand_is[int((1-perc_test-perc_val)*X.shape[0]):int((1-perc_test)*X.shape[0])]
+	rand_tr_is = rand_is[:int((1-perc_test)*X.shape[0])]
 	rand_ts_is = rand_is[int((1-perc_test)*X.shape[0]):]
 
 	x_tr = X[rand_tr_is]
 	y_tr = Y[rand_tr_is]
-	x_vl = X[rand_vl_is]
-	y_vl = Y[rand_vl_is]
 	x_ts = X[rand_ts_is]
 	y_ts = Y[rand_ts_is]
 
-	return x_tr,y_tr,x_vl,y_vl,x_ts,y_ts
+	return x_tr,y_tr,x_ts,y_ts
 
 def get_stim_cue_file_lists(subj_id):
 

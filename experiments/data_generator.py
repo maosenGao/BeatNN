@@ -42,6 +42,8 @@ for i in range(len(subj_ids)):
 
 	isubj_X, isubj_Y = utils.data_utils.get_epochs_and_labels(epoch_size, data, trig_beat_eegsamps_dict, subj_id)
 
+	isubj_X = utils.data_utils.baseline_correction(isubj_X)
+
 	all_subj_beat_epochs_C1_C2 = np.concatenate(
 		(all_subj_beat_epochs_C1_C2,
 		isubj_X),
@@ -54,11 +56,9 @@ for i in range(len(subj_ids)):
 		axis = 0
 		)
 
-x_tr,y_tr,x_vl,y_vl,x_ts,y_ts = utils.data_utils.split_data_for_cross_validation(all_subj_beat_epochs_C1_C2, all_subj_beat_labels_C1_C2)
+x_tr,y_tr,x_ts,y_ts = utils.data_utils.split_data_for_cross_validation(all_subj_beat_epochs_C1_C2, all_subj_beat_labels_C1_C2)
 
 np.save('tr_data/x_tr',x_tr)
 np.save('tr_data/y_tr',y_tr)
-np.save('tr_data/x_vl',x_vl)
-np.save('tr_data/y_vl',y_vl)
 np.save('ts_data/x_ts',x_ts)
 np.save('ts_data/y_ts',y_ts)

@@ -1,3 +1,8 @@
+10/23/2019
+/Use tf.data.Dataset to pass OpenMIIR dataset to tensorflow's official MNIST model
+/Apply baseline correction to epochs
+/Get data from Emily's thesis
+
 10/22/2019
 /Study tf.data.Dataset to pass OpenMIIR dataset to tensorflow's official MNIST model
 /Attend Jay McClelland lab meeting
