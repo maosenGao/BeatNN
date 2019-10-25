@@ -2,14 +2,14 @@ On Oct 23, 2019, Iran Rafel Roman <iran@stanford.edu> wrote:
 
 Hello,
 
-Thanks a lot for this info. This is all I need for now. I wanted to gain access to the raw data. Iâll let you know how things go along.
+Thanks a lot for this info. This is all I need for now. I wanted to gain access to the raw data. I'll let you know how things go along.
 
 Cheers!
 IrÃ¡n
 
 On Oct 23, 2019, at 9:59 AM, Emily Graber <emgraber@ccrma.stanford.edu> wrote:
 
-ï»¿or did you just want the beta band epochs?
+or did you just want the beta band epochs?
 
 On Wed, Oct 23, 2019 at 12:49 PM Emily Graber <emgraber@ccrma.stanford.edu<mailto:emgraber@ccrma.stanford.edu>> wrote:
 More trigger info -

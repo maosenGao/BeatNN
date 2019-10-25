@@ -1,3 +1,6 @@
+10/25/2019
+/Write processing pipeline for Emily's data
+
 10/24/2019
 /Continue training official MNIST model with the OpenMIIR dataset
 /Make a copy of Emily's data
