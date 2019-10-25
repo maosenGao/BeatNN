@@ -1,5 +1,6 @@
 10/24/2019
 /Continue training official MNIST model with the OpenMIIR dataset
+/Make a copy of Emily's data
 
 10/23/2019
 /Use tf.data.Dataset to pass OpenMIIR dataset to tensorflow's official MNIST model
