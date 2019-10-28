@@ -1,5 +1,7 @@
 10/28/2019
 /Complete TRF survey
+/Write data utils for antbeat dataset
+/Write script to import data and triggers for all subjects
 
 10/25/2019
 /Write description of stimuli triggers in Emily's data
