@@ -31,10 +31,10 @@ def get_all_triggers():
 	all_triggers = (
 		((117,), (115,), (111,), (110,)),
 		((127,), (125,), (122, 121), (120,)),
-		((127,), (135,), (133, 132, 131), (130,)),
+		((137,), (135,), (133, 132, 131), (130,)),
 		((217,), (215,), (211,), (210,)),
 		((227,), (225,), (222, 221), (220,)),
-		((227,), (235,), (233, 232, 231), (230,)),
+		((237,), (235,), (233, 232, 231), (230,)),
 		((61,),  (59,),  (55,),  (54,)),
 		((71,),  (69,),  (66,  65),  (64,)),
 		((81,),  (79,),  (77,  76,  75),  (74,)),
@@ -76,12 +76,18 @@ def get_trial_types():
                         'Steady long targ')
 	return trial_types
 
+def remove_dict_val_repeats(dict_w_repeats):
+	dict_wo_repeats = {key:list(set(val))for key, val in dict_w_repeats.items()}
+	return dict_wo_repeats
+
 def get_trial_type_trig_dict():
 	all_trial_types = get_trial_types()
 	all_triggers = get_all_triggers()
-	phase_trigger_dict = {trial:[trigger for trig_list in all_triggers[itrial] for trigger in trig_list] for itrial, trial in enumerate(all_trial_types)}
+	trial_type_trigger_dict = {trial:[trigger for trig_list in all_triggers[itrial] for trigger in trig_list] for itrial, trial in enumerate(all_trial_types)}
+	
+	trial_type_trigger_dict = remove_dict_val_repeats(trial_type_trigger_dict)
 
-	return phase_trigger_dict
+	return trial_type_trigger_dict
 
 def get_phases_trig_dict():
 	all_phases = get_all_phase_names()
@@ -92,8 +98,34 @@ def get_phases_trig_dict():
 			phase_trigger_dict[phase].append(
 						all_triggers[itrial][iphase])
 	phase_trigger_dict = {key:[item for sublist in val for item in sublist] for key, val in phase_trigger_dict.items()} 
+
+	phase_trigger_dict = remove_dict_val_repeats(phase_trigger_dict)
+	
 	return phase_trigger_dict
-		
+
+def generate_phase_trial_type_trigger_dict():
+	phase_trial_type_trigger_dict = {
+		'ASV':117,'ASI':115,'AS1':111,'ASC':110,
+		'AMV':127,'AMI':125,'AM2':122,'AM3':121,'AMC':120,	
+		'ALV':137,'ALI':135,'AL4':133,'AL5':132,'AL6':131,'ALC':130,
+		'DSV':217,'DSI':215,'DS1':211,'DSC':210,
+		'DMV':227,'DMI':225,'DM2':222,'DM3':221,'DMC':220,	
+		'DLV':237,'DLI':235,'DL4':233,'DL5':232,'DL6':231,'DLC':220,
+		'SSV':61 ,'SSI':59 ,'SS1':55 ,'SSC':54 ,
+		'SMV':71 ,'SMI':69 ,'SM2':66 ,'SM3':65 ,'SMC':64 ,	
+		'SLV':81 ,'SLI':79 ,'SL4':77 ,'SL5':76 ,'SL6':75 ,'SLC':74 ,
+		'TASC':11,
+		'TAMC':12,
+		'TALC':13,		
+		'TDSC':21,
+                'TDMC':22,
+		'TDLC':23,
+		'TSSC':31,
+                'TSMC':32,
+	        'TSLC':33
+		}
+	return phase_trial_type_trigger_dict		
+
 def get_eeg_montage(data_dir):
 	mat_channel_file = sp.loadmat(data_dir+'channel_initial.mat')['Channel']
 	positions = np.zeros((len(mat_channel_file[0,:]),3))
@@ -108,29 +140,41 @@ def get_eeg_montage(data_dir):
 
 	return montage
 
-def _read_events_curry(fname):
-    """Read events from Curry event files.
-    Parameters
-    ----------
-    fname : str
-        Path to a curry event file with extensions .cef, .ceo,
-        .cdt.cef, or .cdt.ceo
-    Returns
-    -------
-    events : ndarray, shape (n_events, 3)
-        The array of events.
-    """
-    check_fname(fname, 'curry event', ('.cef', '.cdt.cef'),
-                endings_err=('.cef', '.cdt.cef'))
+def load_raw(data_dir,subj,isubj,irec,montage):		
+	raw = mne.io.read_raw_cnt(data_dir+subj+'/ANT_'+isubj+'_B0'+str(irec)+'_Data.cnt',montage=montage,preload=True)
+	return raw
 
-    events_dict = _read_curry_lines(fname, ["NUMBER_LIST"])
-    # The first 3 column seem to contain the event information
-    curry_events = np.array(events_dict["NUMBER_LIST"], dtype=int)[:, 0:3]
+def load_trigger_events(data_dir,subj,isubj,irec):
+	trigger_events = mne.io.curry.curry._read_events_curry(data_dir+subj+'/ANT_'+isubj+'_B0'+str(irec)+'.ceo')
+	for itrig, trig in enumerate(trigger_events[:,2]):
+		if trig == 119:
+			trigger_events[itrig,2] = 117
+		if trig == 129:
+			trigger_events[itrig,2] = 127
+		if trig == 139:
+			trigger_events[itrig,2] = 137
+		if trig == 219:
+			trigger_events[itrig,2] = 217
+		if trig == 229:
+			trigger_events[itrig,2] = 227
+		if trig == 239:
+			trigger_events[itrig,2] = 237
+		if trig == 63:
+			trigger_events[itrig,2] = 61
+		if trig == 73:
+			trigger_events[itrig,2] = 71
+		if trig == 83:
+			trigger_events[itrig,2] = 81
+	return trigger_events
 
-    return curry_events
-
-def load_raw(data_dir,subj_id):		
-	raw = mne.io.read_raw_fif(data_dir+subj_id+'-raw.fif', preload=True)
+def apply_ssp(raw):
+	raw.set_channel_types(mapping={'HEO':'eog','VEO':'misc','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                        
+	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP HEO
+	raw.set_channel_types(mapping={'HEO':'misc','VEO':'eog','Trigger':'misc'}) # making VEO channel be of 'eog' type to find its projectors                        
+	projs_veo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP VEO
+	raw.add_proj(projs_veo) # adding the projectors
+	raw.add_proj(projs_heo) # adding the projectors
+	raw.set_channel_types(mapping={'HEO':'misc','VEO':'misc','Trigger':'misc'}) # making non EEG channels be of 'misc' type   
 	return raw
 
 def get_data_trig_and_time_sequences_from_raw(raw,tot_rec_chs=71):

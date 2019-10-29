@@ -44,7 +44,10 @@ And the stimulus triggers for target trials are:
 |Steady short 	|63	|59	|55 		|31	 |
 |Steady medium	|73	|69	|66 65		|32	 |
 |Steady long	|83	|79	|77 76 75	|33	 |
+
+
 The subjects used in the publication are:
+
 S01 EGnew
 S02 CPDnew
 S03 TDnew
