@@ -1,6 +1,10 @@
+10/31/2019
+[]Check accuracy of generated labels
+
 10/30/2019
-[]Add triggers for beats not marked by triggers
-[]Update epoching script for all beats 
+/Add triggers for beats not marked by triggers
+/Update epoching script for all beats 
+/Add labels to epochs
 
 10/29/2019
 /Check that .ceo events match raw file events
