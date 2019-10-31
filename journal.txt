@@ -1,6 +1,7 @@
 10/31/2019
 /Check accuracy of generated labels
 /Generate traning data from antbeat dataset
+/Attend McClelland's lab meeting
 
 10/30/2019
 /Add triggers for beats not marked by triggers
