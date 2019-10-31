@@ -12,7 +12,8 @@ trial_type_trigger_dict = antbeat_utils.data_utils.get_trial_type_trig_dict()
 phase_trial_type_trigger_dict = antbeat_utils.data_utils.generate_phase_trial_type_trigger_dict()	
 epoch_size = 76
 nchans = 64
-nlabels = 3
+nlabels = 4
+
 
 # preparing the general montage
 montage = antbeat_utils.data_utils.get_eeg_montage(data_dir)
@@ -36,8 +37,8 @@ for isubj_count, (subj, isubj) in enumerate(subj_names_ids.items()):
 x_tr,y_tr,x_ts,y_ts = antbeat_utils.data_utils.split_data_for_cross_validation(all_subj_epochs, all_subj_labels)
 
 np.save('tr_data/x_tr',x_tr)
-np.save('tr_data/x_tr',y_tr)
+np.save('tr_data/y_tr',y_tr)
 np.save('ts_data/x_ts',x_ts)
-np.save('ts_data/x_ts',y_ts)
+np.save('ts_data/y_ts',y_ts)
 
 		

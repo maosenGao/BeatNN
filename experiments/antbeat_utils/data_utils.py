@@ -285,7 +285,7 @@ def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,sub
 def generate_epoch_label_matrix(all_trigger_events, phase_trigger_dict, trial_type_trigger_dict,isubj_count):
 	# isubj_count, iphase, itrial_type 
 	num_events = all_trigger_events.shape[0]
-	labels = np.empty((num_events,3))*np.nan
+	labels = np.empty((num_events,4))*np.nan
 	for ievent in range(num_events):
 		labels[ievent,0] = isubj_count
 		event = all_trigger_events[ievent,2]
@@ -295,4 +295,17 @@ def generate_epoch_label_matrix(all_trigger_events, phase_trigger_dict, trial_ty
 		for itrial_type, (trial_type, triggs) in enumerate(trial_type_trigger_dict.items()):
 			if event in triggs:
 				labels[ievent,2] = itrial_type
+		labels[ievent,3] = event
 	return labels
+
+def split_data_for_cross_validation(X,Y,perc_test=0.10):
+        rand_is = np.random.choice(X.shape[0],X.shape[0],replace=False)
+        rand_tr_is = rand_is[:int((1-perc_test)*X.shape[0])]          
+        rand_ts_is = rand_is[int((1-perc_test)*X.shape[0]):]         
+                                                                    
+        x_tr = X[rand_tr_is]                                       
+        y_tr = Y[rand_tr_is]                                      
+        x_ts = X[rand_ts_is]                                     
+        y_ts = Y[rand_ts_is]                                   
+                                                                
+        return x_tr,y_tr,x_ts,y_ts 
