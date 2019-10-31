@@ -18,7 +18,6 @@ def get_subj_names_ids_dict():
 		'DJ':'S14',
 		'JH':'S15',
 		'MHert':'S16',
-		'BN':'S17',
 		'JC':'S18',
 		'KK':'S19',
 		'YA':'S20',
@@ -63,7 +62,7 @@ def get_trial_type_trig_dict():
 			233,1233,2233,
 			232,1232,2232,
 			231,1231,2231,
-			220],
+			230],
 		'Steady short norm':[
 			61 ,
 			59 ,1059,2059,
@@ -216,12 +215,13 @@ def load_raw(data_dir,subj,isubj,irec,montage):
 	return raw
 
 def get_beat_trigs():
-	beat_trigs = [115,125,135,215,225,235,59,69,
-			79,111,122,121,133,132,131,
-			55,66,65,77,76,75]
+	beat_trigs = [115,125,135,215,225,235,59,69,79,
+			111,122,121,133,132,131,
+			211,222,221,233,232,231,
+			55 ,66 ,65 ,77 ,76 ,75]
 	return beat_trigs
 
-def load_trigger_events(data_dir,subj,isubj,irec):
+def load_trigger_events(data_dir,subj,isubj,irec,phase_trial_type_trigger_dict):
 	trigger_events = mne.io.curry.curry._read_events_curry(data_dir+subj+'/ANT_'+isubj+'_B0'+str(irec)+'.ceo')
 	beat_trigs = get_beat_trigs() 
 	num_trigs = trigger_events.shape[0]
@@ -259,38 +259,40 @@ def load_trigger_events(data_dir,subj,isubj,irec):
 			num_trigs += 1
 
 		itrig += 1			
-	trigger_events = np.asarray([event for event in trigger_events if event[-1] != 100001])
+	trigger_events = np.asarray([event for event in trigger_events if (event[-1] in phase_trial_type_trigger_dict.values())])
 	return trigger_events
 
-def apply_ssp(raw):
+def apply_ssp(raw,subj,irec):
 	raw.set_channel_types(mapping={'HEO':'eog','VEO':'misc','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                        
 	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP HEO
 	raw.set_channel_types(mapping={'HEO':'misc','VEO':'eog','Trigger':'misc'}) # making VEO channel be of 'eog' type to find its projectors                        
+	print(subj,irec)
 	projs_veo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP VEO
 	raw.add_proj(projs_veo) # adding the projectors
 	raw.add_proj(projs_heo) # adding the projectors
 	raw.set_channel_types(mapping={'HEO':'misc','VEO':'misc','Trigger':'misc'}) # making non EEG channels be of 'misc' type   
 	return raw
 
-def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw, tmin=-0.1, tmax=0.5):
+def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,subj,irec, tmin=-0.1, tmax=0.5):
 	unique_trigger_events_in_raw = np.unique(all_trigger_events[:,2])
 	phase_trial_type_trigger_dict_in_raw = {key:val for key, val in phase_trial_type_trigger_dict.items() if val in unique_trigger_events_in_raw} 
-	raw = apply_ssp(raw) 
+	raw = apply_ssp(raw,subj,irec) 
 	event_id, tmin, tmax = phase_trial_type_trigger_dict_in_raw, tmin, tmax 
 	epoch_params = dict(events = all_trigger_events, event_id = event_id, tmin=tmin, tmax=tmax, preload=True) 
 	epochs = mne.Epochs(raw, **epoch_params) 	
 	return epochs
 
 def generate_epoch_label_matrix(all_trigger_events, phase_trigger_dict, trial_type_trigger_dict,isubj_count):
-	# isubj, iphase, itrial_type 
+	# isubj_count, iphase, itrial_type 
 	num_events = all_trigger_events.shape[0]
-	labels = np.ones((num_events,3))*isubj_count
+	labels = np.empty((num_events,3))*np.nan
 	for ievent in range(num_events):
+		labels[ievent,0] = isubj_count
 		event = all_trigger_events[ievent,2]
 		for iphase, (phase, triggs) in enumerate(phase_trigger_dict.items()):
 			if event in triggs:
 				labels[ievent,1] = iphase
 		for itrial_type, (trial_type, triggs) in enumerate(trial_type_trigger_dict.items()):
 			if event in triggs:
-				labels[itrial_type,2] = itrial_type
+				labels[ievent,2] = itrial_type
 	return labels
