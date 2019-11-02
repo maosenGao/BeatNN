@@ -1,3 +1,6 @@
+11/01/2019
+/Overfit the tensorflow official MNIST network with the antbeat data
+
 10/31/2019
 /Check accuracy of generated labels
 /Generate traning data from antbeat dataset
