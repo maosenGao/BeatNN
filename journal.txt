@@ -1,3 +1,6 @@
+11/04/2019
+/Train the model in the CCN cluster
+
 11/01/2019
 /Overfit the tensorflow official MNIST network with the antbeat data
 
