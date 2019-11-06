@@ -31,7 +31,7 @@ for isubj_count, (subj, isubj) in enumerate(subj_names_ids.items()):
 		epochs = antbeat_utils.data_utils.epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,subj,irec, tmin=-0.1, tmax=0.5)
 		labels = antbeat_utils.data_utils.generate_epoch_label_matrix(all_trigger_events,phase_trigger_dict,trial_type_trigger_dict,isubj_count)
 		epochs = epochs.resample(125)
-		curr_epochs = epochs.get_data()[:,:64,:] # downsample and keep only eeg channels
+		curr_epochs = epochs.get_data()[:,:64,:] # keep only eeg channels
 		x_tr = np.concatenate(
 			(x_tr,curr_epochs[:-60]),axis=0)
 		y_tr = np.concatenate(
