@@ -155,7 +155,7 @@ def generate_phase_trial_type_trigger_dict():
 
 		'DMV':227,
 		'DMI0':225,'DMI1':1225,'DMI2':2225,
-		'DM10':222,'DM11':1222,'DM11':2222,
+		'DM10':222,'DM11':1222,'DM12':2222,
 		'DM20':221,'DM21':1221,'DM22':2221,
 		'DMC':220,
 	
