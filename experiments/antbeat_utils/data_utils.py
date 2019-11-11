@@ -273,12 +273,15 @@ def apply_ssp(raw,subj,irec):
 	raw.set_channel_types(mapping={'HEO':'misc','VEO':'misc','Trigger':'misc'}) # making non EEG channels be of 'misc' type   
 	return raw
 
-def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,subj,irec, tmin=-0.1, tmax=0.5):
+def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,subj,irec, tmin=-0.1, tmax=0.5, event_id = None):
 	unique_trigger_events_in_raw = np.unique(all_trigger_events[:,2])
 	phase_trial_type_trigger_dict_in_raw = {key:val for key, val in phase_trial_type_trigger_dict.items() if val in unique_trigger_events_in_raw} 
 	raw = apply_ssp(raw,subj,irec) 
-	event_id, tmin, tmax = phase_trial_type_trigger_dict_in_raw, tmin, tmax 
-	epoch_params = dict(events = all_trigger_events, event_id = event_id, tmin=tmin, tmax=tmax, preload=True) 
+        if event_id = None:
+            event_id, tmin, tmax = phase_trial_type_trigger_dict_in_raw, tmin, tmax 
+        else:
+            event_id, tmin, tmax = event_id, tmin, tmax
+        epoch_params = dict(events = all_trigger_events, event_id = event_id, tmin=tmin, tmax=tmax, preload=True) 
 	epochs = mne.Epochs(raw, **epoch_params) 	
 	return epochs
 
