@@ -1,3 +1,7 @@
+11/12/2019
+/Troubleshoot antcl classifier (accuracy > 50% achieved for training data)
+/Attend Jay McClelland's lab meeting
+
 11/11/2019
 /Process data for beat event ID experiment
 
