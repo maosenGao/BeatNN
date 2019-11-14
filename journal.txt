@@ -1,5 +1,6 @@
 11/13/2019
 /Generate data with morlet wavelets for classification experiment 
+/Train the tf autoencoder with mnist. Will use autoencoders to reduce the dimensionality of the raw EEG epochs
 
 11/12/2019
 /Troubleshoot antcl classifier (accuracy > 99% achieved for training data)
