@@ -1,3 +1,7 @@
+11/15/2019
+/Improve split of training and validation data in the data generation script
+/Train the classification model again
+
 11/14/2019
 /Continue training autoencoder
 /Filter data with first two spatial Principal Components
