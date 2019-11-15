@@ -1,3 +1,7 @@
+11/14/2019
+/Continue training autoencoder
+/Filter data with first two spatial Principal Components
+
 11/13/2019
 /Generate data with morlet wavelets for classification experiment 
 /Train the tf autoencoder with mnist. Will use autoencoders to reduce the dimensionality of the raw EEG epochs

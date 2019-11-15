@@ -263,11 +263,15 @@ def load_trigger_events(data_dir,subj,isubj,irec,phase_trial_type_trigger_dict):
 	return trigger_events
 
 def apply_ssp(raw,subj,irec):
-	raw.set_channel_types(mapping={'HEO':'eog','VEO':'misc','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                        
-	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP HEO
+	raw.set_channel_types(mapping={'HEO':'eog','VEO':'eog','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                        
+	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=3, average=True) # SSP HEO
+	eog_projs = projs_heo[-3:]
+	mne.viz.plot_projs_topomap(eog_projs, info=raw.info)
 	raw.set_channel_types(mapping={'HEO':'misc','VEO':'eog','Trigger':'misc'}) # making VEO channel be of 'eog' type to find its projectors                        
 	print(subj,irec)
 	projs_veo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP VEO
+	eog_projs = projs_veo[-3:]
+	mne.viz.plot_projs_topomap(eog_projs, info=raw.info)
 	raw.add_proj(projs_veo) # adding the projectors
 	raw.add_proj(projs_heo) # adding the projectors
 	raw.set_channel_types(mapping={'HEO':'misc','VEO':'misc','Trigger':'misc'}) # making non EEG channels be of 'misc' type   
