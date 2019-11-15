@@ -32,14 +32,15 @@ for isubj_count, (subj, isubj) in enumerate(subj_names_ids.items()):
 		labels = antbeat_utils.data_utils.generate_epoch_label_matrix(all_trigger_events,phase_trigger_dict,trial_type_trigger_dict,isubj_count)
 		epochs = epochs.resample(125)
 		curr_epochs = epochs.get_data()[:,:64,:] # keep only eeg channels
+		rand_i = np.random.choice(curr_epochs.shape[0]-60,1)[0]
 		x_tr = np.concatenate(
-			(x_tr,curr_epochs[:-60]),axis=0)
+			(x_tr,curr_epochs[:rand_i],curr_epochs[rand_i+60:]),axis=0)
 		y_tr = np.concatenate(
-			(y_tr,labels[:-60]),axis=0)
+			(y_tr,labels[:rand_i],labels[rand_i+60:]),axis=0)
 		x_ts = np.concatenate(
-			(x_ts,curr_epochs[-60:]),axis=0)
+			(x_ts,curr_epochs[rand_i:rand_i+60]),axis=0)
 		y_ts = np.concatenate(
-			(y_ts,labels[-60:]),axis=0)
+			(y_ts,labels[rand_i:rand_i+60:]),axis=0)
 
 np.save('tr_data/x_tr',x_tr)
 np.save('tr_data/y_tr',y_tr)
