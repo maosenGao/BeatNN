@@ -30,7 +30,7 @@ for isubj_count, (subj, isubj) in enumerate(subj_names_ids.items()):
 		raw.info['bads']=['M1','M2','T7','T8','TP8','TP7','CB1','CB2','FT7','FT8']
 		all_trigger_events = antbeat_utils.data_utils.load_trigger_events(data_dir,subj,isubj,irec+1,phase_trial_type_trigger_dict)
 		epochs = antbeat_utils.data_utils.epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,subj,irec, tmin=-0.1, tmax=0.5)
-		labels = antbeat_utils.data_utils.generate_epoch_label_matrix(all_trigger_events,phase_trigger_dict,trial_type_trigger_dict,isubj_count)
+		labels = antbeat_utils.data_utils.generate_epoch_label_matrix(epochs.events,phase_trigger_dict,trial_type_trigger_dict,isubj_count)
 		epochs = epochs.resample(125)
 		curr_epochs = epochs.get_data()[:,:64,:] # keep only eeg channels
 		perc_test = int(curr_epochs.shape[0]/10)
