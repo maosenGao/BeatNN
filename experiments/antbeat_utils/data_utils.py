@@ -12,6 +12,7 @@ def get_subj_names_ids_dict():
 		'MH':'S07',
 		'AC':'S08',
 		'EC':'S09',
+		'KW':'S10',
 		'IR':'S11',
 		'CB':'S12',
 		'WD':'S13',
@@ -22,6 +23,7 @@ def get_subj_names_ids_dict():
 		'KK':'S19',
 		'YA':'S20',
 		'AW':'S21',
+		'NF':'S22',
 		'CT':'S23'}
 	return subj_names_ids_dict
 
@@ -263,9 +265,9 @@ def load_trigger_events(data_dir,subj,isubj,irec,phase_trial_type_trigger_dict):
 	return trigger_events
 
 def apply_ssp(raw,subj,irec):
-	raw.set_channel_types(mapping={'HEO':'eog','VEO':'eog','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                        
-	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=3, average=True) # SSP HEO
-	raw.set_channel_types(mapping={'HEO':'misc','VEO':'eog','Trigger':'misc'}) # making VEO channel be of 'eog' type to find its projectors                        
+	raw.set_channel_types(mapping={'HEO':'eog','VEO':'misc','Trigger':'misc'}) # making HEO channel be of 'eog' type to find its projectors                   
+	projs_heo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP HEO
+	raw.set_channel_types(mapping={'HEO':'misc','VEO':'eog','Trigger':'misc'}) # making VEO channel be of 'eog' type to find its projectors                   
 	print(subj,irec)
 	projs_veo, events = mne.preprocessing.compute_proj_eog(raw, n_eeg=1, average=True) # SSP VEO
 	raw.add_proj(projs_veo) # adding the projectors
@@ -280,8 +282,8 @@ def epoch_raw_with_ssp(all_trigger_events,phase_trial_type_trigger_dict, raw,sub
 	if event_id == None:
 		event_id, tmin, tmax = phase_trial_type_trigger_dict_in_raw, tmin, tmax 
 	else:
-		event_id, tmin, tmax = event_id, tmin, tmax
-	epoch_params = dict(events = all_trigger_events, event_id = event_id, tmin=tmin, tmax=tmax, preload=True) 
+		event_id, tmin, tmax = event_id, tmin, tmax 
+	epoch_params = dict(events = all_trigger_events, event_id = event_id, tmin=tmin, tmax=tmax, preload=True, reject = dict(eeg=100e-6)) 
 	epochs = mne.Epochs(raw, **epoch_params) 	
 	return epochs
 
