@@ -1,3 +1,7 @@
+11/20/2019
+/Train classifier to recognize individuals. 
+/Achieve 96% accuracy on recognition of individuals
+
 11/19/2019
 /Clean EEG dataset by adding peak-to-peak rejection and marking bad channels
 /Attend Jay McClelland's lab meeting
