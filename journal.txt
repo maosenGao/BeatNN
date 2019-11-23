@@ -1,3 +1,11 @@
+11/21/2019
+/Train classifier to recognize all 21 individuals in Emily's dataset
+/Obtain 90% accuracy on recognition of all 21 individuals
+
+11/20/2019
+/Train classifier to recognize two individuals. 
+/Achieve 96% accuracy on recognition of individuals
+
 11/19/2019
 /Clean EEG dataset by adding peak-to-peak rejection and marking bad channels
 /Attend Jay McClelland's lab meeting
