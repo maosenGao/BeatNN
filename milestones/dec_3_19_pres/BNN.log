@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 NOV 2019 11:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 NOV 2019 22:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,25 +834,74 @@ Dictionary: translator-theorem-dictionary, Language: English
 ) (./BNN.nav) [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 31.
+LaTeX Font Info:    Try loading font information for U+msa on input line 32.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 31.
+LaTeX Font Info:    Try loading font information for U+msb on input line 32.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 31.
+line 32.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 ) [2
 
-] [3
+]
+<fig1.png, id=70, 103.20155pt x 62.1522pt>
+File: fig1.png Graphic file (type png)
+<use fig1.png>
+Package pdftex.def Info: fig1.png  used on input line 45.
+(pdftex.def)             Requested size: 258.00319pt x 155.3801pt.
+ [3
+
+ <./fig1.png>]
+<fig5.jpg, id=98, 1284.8pt x 1138.2525pt>
+File: fig5.jpg Graphic file (type jpg)
+<use fig5.jpg>
+Package pdftex.def Info: fig5.jpg  used on input line 56.
+(pdftex.def)             Requested size: 231.25401pt x 204.8766pt.
+ [4
+
+ <./fig5.jpg>]
+<fig2.png, id=124, 557.08125pt x 760.8425pt>
+File: fig2.png Graphic file (type png)
+<use fig2.png>
+Package pdftex.def Info: fig2.png  used on input line 69.
+(pdftex.def)             Requested size: 111.41428pt x 152.1658pt.
+ [5
+
+ <./fig2.png>]
+<fig3.jpg, id=152, 308.352pt x 104.7915pt>
+File: fig3.jpg Graphic file (type jpg)
+<use fig3.jpg>
+Package pdftex.def Info: fig3.jpg  used on input line 86.
+(pdftex.def)             Requested size: 262.10043pt x 89.0732pt.
+<fig4.jpg, id=153, 308.352pt x 104.3097pt>
+File: fig4.jpg Graphic file (type jpg)
+<use fig4.jpg>
+Package pdftex.def Info: fig4.jpg  used on input line 86.
+(pdftex.def)             Requested size: 262.10043pt x 88.66365pt.
+
+Overfull \vbox (8.33736pt too high) detected at line 86
+ []
+
+[6
+
+ <./fig3.jpg> <./fig4.jpg>]
+<fig6.png, id=179, 1055.945pt x 713.66624pt>
+File: fig6.png Graphic file (type png)
+<use fig6.png>
+Package pdftex.def Info: fig6.png  used on input line 101.
+(pdftex.def)             Requested size: 190.06189pt x 128.45438pt.
+ [7
+
+ <./fig6.png>] [8
 
 ]
 \tf@nav=\write5
@@ -864,29 +913,30 @@ thkerncmss.
 \tf@snm=\write7
 \openout7 = `BNN.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 38.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 38.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 120.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 120.
  (./BNN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 38.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 38.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 120.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 120.
  ) 
 Here is how much of TeX's memory you used:
- 17299 strings out of 492616
- 329604 string characters out of 6129482
+ 17364 strings out of 492616
+ 330402 string characters out of 6129482
  405626 words of memory out of 5000000
- 20833 multiletter control sequences out of 15000+600000
- 14540 words of font info for 53 fonts, out of 8000000 for 9000
+ 20879 multiletter control sequences out of 15000+600000
+ 14834 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,14n,55p,770b,558s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.
-pfb>
-Output written on BNN.pdf (3 pages, 45402 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on BNN.pdf (8 pages, 1413485 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 255 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 17 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
