@@ -1,3 +1,7 @@
+11/25/2019
+/Install latex and start template for dec 3 presentation
+/Work on presentation
+
 11/22/2019
 /Generate data with epochs for the eight beats in the changing phase
 /Define the set of experiments to be included in the first milestone presentation
