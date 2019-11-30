@@ -92,6 +92,7 @@
 
 	\begin{figure}
 		\centering
+			\item 
 		\includegraphics[scale=0.18]{fig6.png}
 		\caption{Merchant \& Bartolo 2017}
 	\end{figure}
@@ -116,5 +117,125 @@
 	\end{itemize}
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{Lit Review: What can CNNs learn from EEG data?}
+	
+	\begin{itemize}
+
+		\item Individual subject classification with resting-state data (Ma et al. 2018)
+
+		\item Motor imagery classification: left vs rigt hand (Tang et al. 2017)
+
+		\item Motor imagery with Riemannian Geometry Classifiers (Barachant et al. 2011)
+		
+		\item The key problem: domain adaptation and transfer learning (Lotte et al. 2018) 
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Individual subject classification (Ma et al. 2018)}
+	
+	\begin{itemize}
+
+		\item Task: resting state with open and closed eyes
+
+		\item CNN input: 64x160 EEG "images" 
+		\begin{itemize}
+			\item 64 EEG channels
+			\item 1 second-long epochs ($fs = 160$)
+			\item 50 (5) seconds of training (test) data per subject 
+			\item 10 subjects
+		\end{itemize}
+
+		\item CNN architecture: LeNet (6 channels in each conv layer)
+	
+		\item Performance: \textbf{88\% accuracy}
+
+		\item Significance: 
+		\begin{itemize}
+			\item EEG for biometrics
+		\end{itemize}
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motor imagery classification: left vs right hand (Tang et al. 2018)}
+	
+	\begin{itemize}
+
+		\item Task: imagination of right or left hand movements during 5 second trials (460 total)
+
+		\item CNN input: 28x60 
+		\begin{itemize}
+			\item 28 EEG channels
+			\item 3 seconds, 50ms fft frames (1 frequency band per subject)
+			\item 350 (100) trials of traning (test) data per subject 
+			\item 2 subjects
+		\end{itemize}
+		
+		\item CNN architecture
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.85]{fig7.jpg}
+		\end{figure}
+	
+		\item Performance: \textbf{87\% accuracy}
+
+		\item Significance: 
+		\begin{itemize}
+			\item Using CNNs to classify EEG with motor imagery
+		\end{itemize}	
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motor imagery with Rimennian Geometry Classifiers (Barachant et al. 2011)}
+	
+	\begin{itemize}
+
+		\item Riemannian geometry studies smooth curved spaces that can be locally and linearly approximated with tangents
+		
+		\item Assumption: each EEG mental state has different power and spatial distribution
+
+		\item The covariance matrix of the EEG data can code this information
+		\begin{figure}
+			\centering
+			\includegraphics[scale=1.0]{fig8.jpg}
+		\end{figure}
+
+		\item Performance: \textbf{70\% accuracy} in a four-class, motor imagery task (four extremities)
+
+		\item This method is considered to be the \textit{state-of-the-art} (Lotte et al. 2018)
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{The key problem: domain adaptation and transfer learning (Lotte et al. 2018)}
+	
+	\begin{itemize}
+
+		\item In EEG, major changes in data distribution can occur between subjects or across time.
+
+		\item Solution: transfer learning (calibration) to optimize the algorithm across time and across subjects
+
+		\begin{itemize}
+			\item Learn the transformation that explains the change in the data distribution
+			\item Reweighting
+			\item Find the common features between the two distributions
+		\end{itemize}
+
+	\end{itemize}
+
+\end{frame}
+
 
 \end{document}
