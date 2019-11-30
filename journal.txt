@@ -1,9 +1,12 @@
+11/29/2019
+/Work on presentation slides and literature review
+
 11/27/2019
 /Troubleshoot classification experiments (audio_visual, condition recognition)
 
 11/26/2019
 /Train experiments cl_ind, cl_ind_v, cl_ind_a to at least 90% val accuracy
-/Overfit other experiments that need more trouble shooting
+/Overfit other experiments that need more troubleshooting
 
 11/25/2019
 /Install latex and start template for dec 3 presentation

@@ -128,6 +128,8 @@
 		\item Motor imagery classification: left vs rigt hand (Tang et al. 2017)
 
 		\item Motor imagery with Riemannian Geometry Classifiers (Barachant et al. 2011)
+
+		\item Music imagery information retrieval (Tan et al. 2018)
 		
 		\item The key problem: domain adaptation and transfer learning (Lotte et al. 2018) 
 
@@ -147,7 +149,7 @@
 			\item 64 EEG channels
 			\item 1 second-long epochs ($fs = 160$)
 			\item 50 (5) seconds of training (test) data per subject 
-			\item 10 subjects
+			\item 10 participants
 		\end{itemize}
 
 		\item CNN architecture: LeNet (6 channels in each conv layer)
@@ -175,7 +177,7 @@
 			\item 28 EEG channels
 			\item 3 seconds, 50ms fft frames (1 frequency band per subject)
 			\item 350 (100) trials of traning (test) data per subject 
-			\item 2 subjects
+			\item 2 participants
 		\end{itemize}
 		
 		\item CNN architecture
@@ -212,8 +214,47 @@
 
 		\item Performance: \textbf{70\% accuracy} in a four-class, motor imagery task (four extremities)
 
-		\item This method is considered to be the \textit{state-of-the-art} (Lotte et al. 2018)
+		\item Significance: 
+		\begin{itemize}
+			\item This method is considered to be the \textit{state-of-the-art} (Lotte et al. 2018)
+		\end{itemize}	
 
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Music imagery information retrieval (Tan et al. 2018)}
+	
+	\begin{itemize}
+
+		\item OpenMIIR dataset: listening and imagination of 12 known musical stimuli (Stober et al. 2015)
+
+		\item CNN input: raw EEG signal 
+		\begin{itemize}
+			\item 64 EEG channels
+			\item 240 trials per participant (12 stimuli x 4 conditions x 5 blocks). Avg trial length (\~10 sec)
+			\item 10 participants
+		\end{itemize}
+		
+		\item CNN architecture
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.85]{fig9.jpg}
+		\end{figure}
+	
+		\item Performance:
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.85]{fig10.jpg}
+		\end{figure}
+	
+		\item Significance:
+		\begin{itemize}
+			\item Deep transfer learning exploiting EEG \textit{multimodality} and using joint training for knowledge transfer.
+		\end{itemize}	
+	
 	\end{itemize}
 
 \end{frame}
@@ -237,5 +278,34 @@
 
 \end{frame}
 
+
+
+\begin{frame}
+	\frametitle{Research question and hypothesis}
+	
+	\begin{itemize}
+
+		\item Pulse, tempo and meter can be observed in the neural correlates measured with EEG and MEG.
+
+		\item To maximize the SNR, these observations require the analysis of hundreds of trials.
+
+		\item \textbf{Research Question:} could these features be identified in single trials? and if so, can we decode from human brain data, in real-time, perceived and imagined musical features like pulse, tempo and meter? 
+			 
+		\item \textbf{Hypothesis:} Deep neural networks, like CNNs, can learn to identify these musical features on a single-trial level.
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Methods: dataset}
+	
+	\begin{itemize}
+
+		\item
+
+	\end{itemize}
+
+\end{frame}
 
 \end{document}
