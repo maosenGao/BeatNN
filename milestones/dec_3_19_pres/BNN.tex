@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{bookmark}
+\usepackage{multicol}
 
 \title{Deep Neural Network for Real-Time EEG Decoding of Musical Rhythm Imagery}
 \author{Ir\'{a}n Rom\'{a}n}
@@ -416,6 +417,62 @@
 		\item Accelerating vs decelerating vs steady beat classification
 
 	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results: Subject classification}
+
+	\begin{itemize}
+		
+		\item \textbf{95\% accuracy}
+
+		\item Trained with pulse epochs (no visual stimuli epochs) 
+
+		\item Confusion matrix
+		\begin{figure}
+			\centering
+			\includegraphics[scale=1.0]{fig14.png}
+		\end{figure}
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results: Audio vs visual stimulus classification}
+
+	\begin{multicols}{2}
+		Accuracy per Participant
+		\begin{tabular}{l|l}
+			P1 & 0.98 \\
+			P2 & 0.82 \\
+			P3 & 0.90 \\
+			P4 & 0.85 \\
+			P5 & 0.94 \\
+			P6 & 0.78 \\
+			P7 & 0.91 \\
+			P8 & 0.94 \\
+			P9 & 0.87 \\
+			P10 & 0.86 \\
+			P11 & 0.94 \\
+			P12 & 0.99 \\
+			P13 & 0.95 \\
+			P14 & 0.88 \\
+			P15 & 0.92 \\
+			P16 & 0.93 \\
+			P17 & 0.74 \\
+			P18 & 0.86 \\
+			P19 & 0.93 \\
+			P20 & 0.83 \\
+			P21 & 0.87 \\
+		\end{tabular}
+		\columnbreak
+		\begin{figure}
+			\centering
+			\includegraphics[scale=1.0]{fig15.png}
+		\end{figure}
+
+	\end{multicols}
 
 \end{frame}
 
