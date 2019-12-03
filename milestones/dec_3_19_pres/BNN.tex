@@ -124,7 +124,7 @@
 	
 	\begin{itemize}
 
-		\item Individual subject classification with resting-state data (Ma et al. 2018)
+		\item Individual participant classification with resting-state data (Ma et al. 2018)
 
 		\item Motor imagery classification: left vs rigt hand (Tang et al. 2017)
 
@@ -139,7 +139,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Individual subject classification (Ma et al. 2018)}
+	\frametitle{Individual participant classification (Ma et al. 2018)}
 	
 	\begin{itemize}
 
@@ -149,7 +149,7 @@
 		\begin{itemize}
 			\item 64 EEG channels
 			\item 1 second-long epochs ($fs = 160$)
-			\item 50 (5) seconds of training (test) data per subject 
+			\item 50 (5) seconds of training (test) data per participant 
 			\item 10 participants
 		\end{itemize}
 
@@ -176,22 +176,28 @@
 		\item CNN input: 28x60 
 		\begin{itemize}
 			\item 28 EEG channels
-			\item 3 seconds, 50ms fft frames (1 frequency band per subject)
-			\item 350 (100) trials of traning (test) data per subject 
+			\item 3 seconds, 50ms fft frames (1 frequency band per participant)
+			\item 350 (100) trials of traning (test) data per participant 
 			\item 2 participants
 		\end{itemize}
-		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motor imagery classification: left vs right hand (Tang et al. 2018)}
+
+	\begin{itemize}	
 		\item CNN architecture
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.85]{fig7.jpg}
+			\includegraphics[scale=1.0]{fig7.jpg}
 		\end{figure}
 	
 		\item Performance: \textbf{87\% accuracy}
 
 		\item Significance: 
 		\begin{itemize}
-			\item Using CNNs to classify EEG with motor imagery
+			\item Using CNNs to classify motor imagery EEG
 		\end{itemize}	
 
 	\end{itemize}
@@ -210,14 +216,14 @@
 		\item The covariance matrix of the EEG data can code this information
 		\begin{figure}
 			\centering
-			\includegraphics[scale=1.0]{fig8.jpg}
+			\includegraphics[scale=0.5]{fig8.jpg}
 		\end{figure}
 
 		\item Performance: \textbf{70\% accuracy} in a four-class, motor imagery task (four extremities)
 
 		\item Significance: 
 		\begin{itemize}
-			\item This method is considered to be the \textit{state-of-the-art} (Lotte et al. 2018)
+			\item Considered to be the \textit{state-of-the-art} (Lotte et al. 2018)
 		\end{itemize}	
 
 	\end{itemize}
@@ -242,18 +248,26 @@
 		\item CNN architecture
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.85]{fig9.jpg}
+			\includegraphics[scale=0.475]{fig9.jpg}
 		\end{figure}
+
+	\end{itemize}
+
+\end{frame}
 	
+\begin{frame}
+	\frametitle{Music imagery information retrieval (Tan et al. 2018)}
+	
+	\begin{itemize}
 		\item Performance:
 		\begin{figure}
 			\centering
-			\includegraphics[scale=0.85]{fig10.jpg}
+			\includegraphics[scale=0.45]{fig10.jpg}
 		\end{figure}
 	
 		\item Significance:
 		\begin{itemize}
-			\item Deep transfer learning exploiting EEG \textit{multimodality} and using joint training for knowledge transfer.
+			\item Deep transfer learning, exploiting EEG \textit{multimodality}, and using joint training for knowledge transfer.
 		\end{itemize}	
 	
 	\end{itemize}
@@ -265,10 +279,11 @@
 	
 	\begin{itemize}
 
-		\item In EEG, major changes in data distribution can occur between subjects or across time.
+		\item In EEG, major changes in data distribution can occur between participants or across time.
 
-		\item Solution: transfer learning (calibration) to optimize the algorithm across time and across subjects
+		\item Solution: transfer learning (calibration) to optimize the algorithm across time and across participants
 
+		\item The solution involves one or more of the following:
 		\begin{itemize}
 			\item Learn the transformation that explains the change in the data distribution
 			\item Reweighting
@@ -303,12 +318,12 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.85]{fig11.jpg}
+		\includegraphics[scale=0.7]{fig11.jpg}
 	\end{figure}
 	
 	\begin{itemize}
 
-		\item 21 Participants listened 450 trials, each consisting of \~18 metronome clicks that either:
+		\item 21 Participants listened 450 trials, each consisting of $\mathtt{\sim}$ 18 metronome clicks that either:
 		\begin{itemize} 
 			\item accelerate
 			\item decelerate
@@ -319,6 +334,19 @@
 
 		\item The three types of trials are equally likely to appear and are presented randomly.
 
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Methods: EEG dataset task}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.7]{fig11.jpg}
+	\end{figure}
+	
+	\begin{itemize}
 		\item Stimuli presentation was evenly divided across eight blocks
 
 		\item At the beginning of each trial, participants see a visual cue that tells them what the metronome will do. 
@@ -330,7 +358,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Methods: EEG equipment}
+	\frametitle{Methods: EEG data collection equipment}
 	
 	\begin{itemize}
 
@@ -340,7 +368,7 @@
 
 		\item 2 electro-oculogram channels to record horizontal and vertical eye movements 
 		
-		\item Insert earphones and a monitor delivered the stimuli
+		\item Stimuli delivered by insert earphones and a monitor
 
 	\end{itemize}
 
@@ -380,7 +408,7 @@
 			\item 14,791 validation epochs (803 visual epochs)
 		\end{itemize}
 
-		\item \~6,300 epochs per participant (21 total)
+		\item $\mathtt{\sim}$6,300 epochs per participant (21 participants total)
 	
 		\item Epochs were multiplied by $10^6$ and cast to be float32
 
@@ -390,7 +418,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.85]{fig12.png}
+		\includegraphics[scale=0.4]{fig12.png}
 	\end{figure}
 
 \end{frame}
@@ -400,7 +428,7 @@
 
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.85]{fig13.png}
+		\includegraphics[scale=0.25]{fig13.png}
 	\end{figure}
 	
 \end{frame}
@@ -412,7 +440,7 @@
 		
 		\item Subject classification 
 
-		\item Audio vs visual stimulus classification
+		\item Pulse vs visual stimulus classification
 
 		\item Accelerating vs decelerating vs steady beat classification
 
@@ -428,127 +456,184 @@
 		\item \textbf{95\% accuracy}
 
 		\item Trained with pulse epochs (no visual stimuli epochs) 
+		\begin{itemize}
+			\item $\mathtt{\sim}$6,000 per participant
+		\end{itemize}
 
 		\item Confusion matrix
 		\begin{figure}
 			\centering
-			\includegraphics[scale=1.0]{fig14.png}
+			\includegraphics[scale=0.6]{fig14.png}
 		\end{figure}
 	\end{itemize}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Results: Audio vs visual stimulus classification}
+	\frametitle{Results: Pulse vs visual stimulus classification}
 
-	\begin{multicols}{2}
-		Accuracy per Participant
-		\begin{tabular}{l|l}
-			P1 & 0.98 \\
-			P2 & 0.82 \\
-			P3 & 0.90 \\
-			P4 & 0.85 \\
-			P5 & 0.94 \\
-			P6 & 0.78 \\
-			P7 & 0.91 \\
-			P8 & 0.94 \\
-			P9 & 0.87 \\
-			P10 & 0.86 \\
-			P11 & 0.94 \\
-			P12 & 0.99 \\
-			P13 & 0.95 \\
-			P14 & 0.88 \\
-			P15 & 0.92 \\
-			P16 & 0.93 \\
-			P17 & 0.74 \\
-			P18 & 0.86 \\
-			P19 & 0.93 \\
-			P20 & 0.83 \\
-			P21 & 0.87 \\
-		\end{tabular}
-		\columnbreak
-		\begin{figure}
-			\centering
-			\includegraphics[scale=1.0]{fig15.png}
-		\end{figure}
+	$\mathtt{\sim}$350 visual epochs and $\mathtt{\sim}$6,000 pulse epochs per participant
 
-	\end{multicols}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Results: Accelerating vs decelerating vs steady beat classification}
-
-	\begin{multicols}{2}
-		Pulse changing - accuracy per participant
-		\begin{tabular}{l|l}
-			P1 & 0.43 \\
-			P2 & 0.36 \\
-			P3 & 0.38 \\
-			P4 & 0.36 \\
-			P5 & 0.37 \\
-			P6 & 0.37 \\
-			P7 & 0.39 \\
-			P8 & 0.40 \\
-			P9 & 0.37 \\
-			P10 & 0.40 \\
-			P11 & 0.41 \\
-			P12 & 0.37 \\
-			P13 & 0.40 \\
-			P14 & 0.39 \\
-			P15 & 0.40 \\
-			P16 & 0.40 \\
-			P17 & 0.36 \\
-			P18 & 0.46 \\
-			P19 & 0.42 \\
-			P20 & 0.38 \\
-			P21 & 0.37 \\
-		\end{tabular}
-		\columnbreak
-		\begin{figure}
-			\centering
-			\includegraphics[scale=1.0]{fig16.png}
-		\end{figure}
-
-	\end{multicols}
+	\begin{minipage}{0.3\linewidth}
+	Accuracy \\
+	per participant
+	\begin{table}
+	\tiny
+	\begin{tabular}{l|l}
+		P1 & 0.98 \\
+		P2 & 0.82 \\
+		P3 & 0.90 \\
+		P4 & 0.85 \\
+		P5 & 0.94 \\
+		P6 & 0.78 \\
+		P7 & 0.91 \\
+		P8 & 0.94 \\
+		P9 & 0.87 \\
+		P10 & 0.86 \\
+		P11 & 0.94 \\
+		P12 & 0.99 \\
+		P13 & 0.95 \\
+		P14 & 0.88 \\
+		P15 & 0.92 \\
+		P16 & 0.93 \\
+		P17 & 0.74 \\
+		P18 & 0.86 \\
+		P19 & 0.93 \\
+		P20 & 0.83 \\
+		P21 & 0.87 \\
+	\end{tabular}
+	\end{table}
+	\end{minipage}
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{fig15.png}
+	\end{minipage}
 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Results: Accelerating vs decelerating vs steady beat classification}
+	\frametitle{Results: Accelerating vs decelerating vs steady beat classification. "Tempo changing pulses"}
 
-	\begin{multicols}{2}
-		Steady pulse - accuracy per participant
-		\begin{tabular}{l|l}
-			P1 & 0.38 \\
-			P2 & 0.41 \\
-			P3 & 0.35 \\
-			P4 & 0.37 \\
-			P5 & 0.37 \\
-			P6 & 0.39 \\
-			P7 & 0.38 \\
-			P8 & 0.35 \\
-			P9 & 0.43 \\
-			P10 & 0.42 \\
-			P11 & 0.40 \\
-			P12 & 0.36 \\
-			P13 & 0.41 \\
-			P14 & 0.38 \\
-			P15 & 0.35 \\
-			P16 & 0.41 \\
-			P17 & 0.41 \\
-			P18 & 0.35 \\
-			P19 & 0.43 \\
-			P20 & 0.41 \\
-			P21 & 0.38 \\
-		\end{tabular}
-		\columnbreak
-		\begin{figure}
-			\centering
-			\includegraphics[scale=1.0]{fig17.png}
-		\end{figure}
+	$\mathtt{\sim}$2,800 "tempo changing" epochs per participant
 
-	\end{multicols}
+	\begin{minipage}{0.3\linewidth}
+	Accuracy \\
+	per participant
+	\begin{table}
+	\tiny
+	\begin{tabular}{l|l}
+		P1 & 0.43 \\
+		P2 & 0.36 \\
+		P3 & 0.38 \\
+		P4 & 0.36 \\
+		P5 & 0.37 \\
+		P6 & 0.37 \\
+		P7 & 0.39 \\
+		P8 & 0.40 \\
+		P9 & 0.37 \\
+		P10 & 0.40 \\
+		P11 & 0.41 \\
+		P12 & 0.37 \\
+		P13 & 0.40 \\
+		P14 & 0.39 \\
+		P15 & 0.40 \\
+		P16 & 0.40 \\
+		P17 & 0.36 \\
+		P18 & 0.46 \\
+		P19 & 0.42 \\
+		P20 & 0.38 \\
+		P21 & 0.37 \\
+	\end{tabular}
+	\end{table}
+	\end{minipage}
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{fig16.png}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results: Accelerating vs decelerating vs steady beat classification. "Tempo changing pulses"}
+
+	$\mathtt{\sim}$2,800 "tempo changing" epochs per participant
+
+	\begin{minipage}{0.3\linewidth}
+	Accuracy \\
+	per participant
+	\begin{table}
+	\tiny
+	\begin{tabular}{l|l}
+		P1 & 0.43 \\
+		P2 & 0.36 \\
+		P3 & 0.38 \\
+		P4 & 0.36 \\
+		P5 & 0.37 \\
+		P6 & 0.37 \\
+		P7 & 0.39 \\
+		P8 & 0.40 \\
+		P9 & 0.37 \\
+		P10 & 0.40 \\
+		P11 & 0.41 \\
+		P12 & 0.37 \\
+		P13 & 0.40 \\
+		P14 & 0.39 \\
+		P15 & 0.40 \\
+		P16 & 0.40 \\
+		P17 & 0.36 \\
+		P18 & 0.46 \\
+		P19 & 0.42 \\
+		P20 & 0.38 \\
+		P21 & 0.37 \\
+	\end{tabular}
+	\end{table}
+	\end{minipage}
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{fig18.png}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Results: Accelerating vs decelerating vs steady beat classification. Steady pulses}
+
+	$\mathtt{\sim}$3,200 steady tempo epochs per participant
+
+	\begin{minipage}{0.3\linewidth}
+	Accuracy \\
+	per participant
+	\begin{table}
+	\tiny
+	\begin{tabular}{l|l}
+		P1 & 0.38 \\
+		P2 & 0.41 \\
+		P3 & 0.35 \\
+		P4 & 0.37 \\
+		P5 & 0.37 \\
+		P6 & 0.39 \\
+		P7 & 0.38 \\
+		P8 & 0.35 \\
+		P9 & 0.43 \\
+		P10 & 0.42 \\
+		P11 & 0.40 \\
+		P12 & 0.36 \\
+		P13 & 0.41 \\
+		P14 & 0.38 \\
+		P15 & 0.35 \\
+		P16 & 0.41 \\
+		P17 & 0.41 \\
+		P18 & 0.35 \\
+		P19 & 0.43 \\
+		P20 & 0.41 \\
+		P21 & 0.38 \\
+	\end{tabular}
+	\end{table}
+	\end{minipage}
+	\begin{minipage}{0.6\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{fig17.png}
+	\end{minipage}
 
 \end{frame}
 
