@@ -1,0 +1,6 @@
+Jay: Before trying to classify different mental states, start with a simpler task, like classification of pulses with different tempi.
+Students:
+-Instead of classifying epochs with EEG data right after the beat, classify epochs with EEG data before the beat. That way EEG is more likely to have information about a person's mental state and expectations (top down processes), instead of information about stimulus processing (bottom-up).
+-Classify longer epochs, in order to capture more information about what people are listening and processing on a more global scale.
+-More care needs to be taken about which baselines for these classification are good frames of reference to compare CCNs with.
+ 
