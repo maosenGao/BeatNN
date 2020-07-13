@@ -5,7 +5,7 @@ import mne
 
 def get_all_subject_ids():
 	subj_ids = ('P01', 'P05', 'P07', 'P11', 'P13', 'P04', 'P06', 'P09', 'P12', 'P14')
-	return subj_ids
+	return subj_ids  
 
 def get_all_conds():
 	all_conds = ('C1', 'C2', 'C3', 'C4')

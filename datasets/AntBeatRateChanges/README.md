@@ -1,5 +1,8 @@
 This directory contains the EEG files for the 'Anticipation of Beat Rate Changes' dataset, which was collected by Emily Graber for her PhD dissertation at the Center for Computer Research in Music and Acoustics (CCRMA), Stanford, California
 
+这个目录包含了由Emily收集的“预拍率变化”数据集的脑电图文件
+她在加州斯坦福大学计算机音乐与声学研究中心(CCRMA)发表博士论文
+
 Scientific Publication:
 Graber E, Fujioka T. Endogenous Expectations for Sequence Continuation after Auditory Beat Accelerations And Decelerations Revealed by P3a and Induced Beta-Band Responses. Neuroscience. 2019 Jun 18.
 

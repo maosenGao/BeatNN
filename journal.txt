@@ -26,62 +26,98 @@
 
 11/26/2019
 /Train experiments cl_ind, cl_ind_v, cl_ind_a to at least 90% val accuracy
+
 /Overfit other experiments that need more troubleshooting
 
+/训练cl_ind、cl_ind_v、cl_ind_a等实验，使其精度至少达到90%
+/需要更多故障排除的其他实验
+
+
 11/25/2019
+
 /Install latex and start template for dec 3 presentation
 /Work on presentation
 
+/安装latex并开始12月3日演示
+/演示工作的模板
+
 11/22/2019
+
 /Generate data with epochs for the eight beats in the changing phase
 /Define the set of experiments to be included in the first milestone presentation
 
+/为变化阶段的八拍生成具有epoch的数据
+/定义要包含在第一个里程碑演示中的实验集
+
+
 11/21/2019
+
 /Train classifier to recognize all 21 individuals in Emily's dataset
 /Obtain 90% accuracy on recognition of all 21 individuals
+
+/训练分类器识别Emily的数据集中的21个个体
+/对21个个体的识别准确率达到90%
 
 11/20/2019
 /Train classifier to recognize two individuals. 
 /Achieve 96% accuracy on recognition of individuals
 
 11/19/2019
+
 /Clean EEG dataset by adding peak-to-peak rejection and marking bad channels
 /Attend Jay McClelland's lab meeting
 /Train classification model with new data
 
+/通过添加峰对峰的排斥和标记坏通道来清洁脑电图数据集
+/参加Jay McClelland的实验室会议
+/用新数据训练分类模型
+
 11/18/2019
+
 /Troubleshoot overfitting in classification experiment
+/分类实验过拟合的疑难解答
 
 11/15/2019
+
 /Improve split of training and validation data in the data generation script
 /Train the classification model again
 
 11/14/2019
+
 /Continue training autoencoder
 /Filter data with first two spatial Principal Components
 
 11/13/2019
+
 /Generate data with morlet wavelets for classification experiment 
 /Train the tf autoencoder with mnist. Will use autoencoders to reduce the dimensionality of the raw EEG epochs
 
 11/12/2019
+
 /Troubleshoot antcl classifier (accuracy > 99% achieved for training data)
 /Attend Jay McClelland's lab meeting
 
 11/11/2019
+
 /Process data for beat event ID experiment
+/处理beat事件ID实验的数据
 
 11/08/2019
+
 /Train antcl classififer
 
 11/07/2019
+
 /Launch classification experiments
 	antcl
 
 11/06/2019
+
 /Troubleshoot CCN GPU usage
+/故障诊断 CCN GPU 使用
 
 11/05/2019
+
 /Attend McClelland Lab meeting
 /Troubleshoot CCN GPU usage
 /Improve dataset validation split
@@ -89,6 +125,7 @@
 	-Classification: Anticipation of speeding, slowing, or stable beat
 	-Object detection: Beat onset ID
 		-Beat frequency estimation
+        
 
 11/04/2019
 /Clone git repos on CCN node 12
@@ -224,3 +261,7 @@
 /Set up project github repo
 	github.com/iranroman/BeatNN
 /Add README with project abstract
+
+研究项目的硬件和软件资源
+建立项目github.com/iranroman/BeatNN
+添加README项目摘要
