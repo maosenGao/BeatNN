@@ -13,7 +13,7 @@ Iran R Roman(音乐博士)，Jay McClelland(心理学)，Chris Chafe(音乐)
 Data-driven sound creation is a central feature of computer music. An EEG-based drum machine will explore the potential for musical rhythm imagery classification to operate a musical device. Interestingly, neural activities during perception and imagery of temporal structures of music also overlap closely with those during motor imagery. Studies have explored the motor imagery task for Brain-Computer Interface (BCI) applications using noninvasive EEG. Convolutional Neural Networks (CNNs) can extract features from EEG during motor imagery to control a BCI apparatus in real time. Recently, research has shown that EEG is modulated during music imagery reflecting the speed of musical tempo. Furthermore, CNN-based classification is also successful for EEG during musical rhythm imagery. Thus, our idea is to create an EEG-BCI-based drum machine linked to musical rhythm imagery. We will train CNNs with open-source existing data during musical rhythm imagery tasks to recognize musical features and then incorporate the results into a prototype BCI system. This opens the door to the future BCIs with imagery for other musical features such as pitch, timbre, and harmony.
 
 数据驱动的声音创作是计算机音乐的一个核心特征。
-一个基于脑电图的鼓机将探索音乐节奏图像分类的潜力来操作音乐设备。
+一个基于脑电图的机器将探索音乐节奏图像分类的潜力来操作音乐设备。
 有趣的是，在感知和想象音乐的时间结构时的神经活动也与运动想象时的神经活动紧密重叠。
 研究已经探索了脑机接口(BCI)的运动图像任务使用无创脑电图。
 卷积神经网络(CNNs)可以在运动成像过程中从脑电图中提取特征，对脑机接口设备进行实时控制。
