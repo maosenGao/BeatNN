@@ -59,8 +59,19 @@ def get_trig_audio_eegonsets_dict(triggs_sequence, cond_trig_dict, audio_onset_t
 	triggs_audio_eegonsets_dict = {itrig : all_audio_onsets[np.abs(np.repeat(all_audio_onsets[...,np.newaxis],len(onsets),axis=1) - onsets).argmin(axis=0)] for itrig, onsets in triggs_eegonsets_dict.items()}
 	return triggs_audio_eegonsets_dict
 
-def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'):
+# def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'): # the original
+# def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = "E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\full.v2"):
+def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = 'E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\full.v2\\'):
+# def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '\\Users\\iranrroman\\Research\\BeatNN\\datasets\\OpenMIIR\\openmiir\\audio\\full.v2\\'):
+# def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\full.v2\\'):
+# def get_stim_id_beat_audiosamples_dict(stm_file_list, cue_file_list, fs=44100, stm_dir = '/Users/zx305/Documents/GitHub/openmiir/audio/full.v2/'):
 	
+	print('len(stm_dir) = ',len(stm_dir))
+	# print(int(file[len(stm_dir)+1:len(stm_dir)+3]))
+	# print(int(file[len(stm_dir)+1:len(stm_dir)+3]) for file in stm_file_list)
+
+	print('stm_file_list',stm_file_list)
+	print('cue_file_list',cue_file_list)
 	all_stim_ids = [int(file[len(stm_dir)+1:len(stm_dir)+3]) for file in stm_file_list]
 	
 	stim_id_beat_audiosamps_dict = dict()
@@ -154,10 +165,10 @@ def get_stim_cue_file_lists(subj_id):
 
 	subj_id = int(subj_id[1:])
 
-	stm_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v2/'
-	stm_dir_v1 = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/full.v1/'
-	cue_dir = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/cues.v2/'
-	cue_dir_v1 = '/Users/iranrroman/Research/BeatNN/datasets/OpenMIIR/openmiir/audio/cues.v1/'
+	stm_dir = 'E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\full.v2\\'
+	stm_dir_v1 = 'E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\full.v1\\'
+	cue_dir = 'E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\cues.v2\\'
+	cue_dir_v1 = 'E:\\360MoveData\\Users\\zx305\\Documents\\GitHub\\openmiir\\audio\\cues.v1\\'
 
 	stm_file_list = [
 		stm_dir+'S01_Chim Chim Cheree_lyrics.wav',

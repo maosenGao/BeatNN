@@ -4,7 +4,8 @@ import mne
 import utils.data_utils 
 
 # global variables
-data_dir = '../datasets/OpenMIIR/data/'
+# data_dir = '../datasets/OpenMIIR/data/'
+data_dir = 'E:\\OpenMIIR-RawEEG_v1\\OpenMIIR\\eeg\\mne\\'
 subj_ids = utils.data_utils.get_all_subject_ids()
 all_conds = utils.data_utils.get_all_conds()
 nchans = 70 # eeg channels
@@ -14,7 +15,7 @@ nlabels = 3 # number of labels
 # epoching variables 
 nsecs = 0.6
 epoch_size = int(fs*nsecs) # in samples
-
+ 
 # define conditions of interest  
 conds_of_interest = all_conds[:2]
 cond_trig_dict = utils.data_utils.get_cond_stim_trig_dict(conds_of_interest)
@@ -25,7 +26,7 @@ all_subj_beat_labels_C1_C2 = np.empty([0,nlabels])
 
 # iterate over subjects to get all epochs
 for i in range(len(subj_ids)):
-
+  
 	subj_id = subj_ids[i]
 	
 	raw = utils.data_utils.load_raw(data_dir,subj_id)

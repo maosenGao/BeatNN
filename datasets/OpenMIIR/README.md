@@ -25,7 +25,16 @@ In this channe a zero means no stimulus trigger present. Each stimulus type has 
 
 Additionally there are four-long trigger codes. 
 
+刺激触发代码位于名为“sTI 014”的数据通道中。
+在这个通道中，零意味着没有刺激触发。
+每种刺激类型都有一个识别代码(长2或3)。
+这些代码的工作方式如下:
+-最右边的数字表示条件
+-其他数字表示刺激ID(12种不同的总数)
+
+
 All possible trigger codes are:
+此外，还有四长触发码。所有可能的触发代码为:
 --------------------------
 Stim     C1   C2   C3   C4
 --------------------------
